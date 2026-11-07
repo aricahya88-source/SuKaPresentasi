@@ -34,7 +34,7 @@ const O = (e, n, r = "text-link") =>
     `<a class="${r}" href="${R(e)}" target="_blank" rel="noopener noreferrer">${R(n)} <span aria-hidden="true">↗</span></a>`,
   Qt = '<span class="brand-mark" aria-hidden="true">✳</span>';
 function yt(e) {
-  return `<header class="header"><a class="brand" href="#/">${Qt}<span><strong>${e ? R(B.deck.label || B.deck.title) : "SUKA Presentasi"}</strong><small>UIN Sunan Kalijaga</small></span></a><nav aria-label="Menu utama">${e ? '<a class="all-link" href="#/">Semua materi</a>' : '<span class="nav-label">RUANG GAGASAN & INSPIRASI</span>'}<button data-action="motion" aria-pressed="${q}" title="Aktifkan atau hentikan partikel">${q ? "◉" : "○"} <span>Animasi ${q ? "aktif" : "nonaktif"}</span></button><button data-action="print" class="print-button" title="Cetak semua slide / simpan sebagai PDF">▤ <span>Cetak PDF</span></button><button data-action="fullscreen" class="full" title="Layar penuh (F)" aria-label="Aktifkan layar penuh">⛶ <span>Full Screen</span></button></nav></header>`;
+  return `<header class="header"><a class="brand" href="#/">${Qt}<span><strong>${e ? R(B.deck.label || B.deck.title) : "SUKA Presentasi"}</strong><small>UIN Sunan Kalijaga</small></span></a><nav aria-label="Menu utama">${e ? '<a class="all-link" href="#/">Semua materi</a>' : '<span class="nav-label">RUANG GAGASAN & INSPIRASI</span>'}<button data-action="motion" aria-pressed="${q}" title="Aktifkan atau hentikan animasi">${q ? "◉" : "○"} <span>Animasi ${q ? "aktif" : "nonaktif"}</span></button><button data-action="print" class="print-button" title="Cetak semua slide / simpan sebagai PDF">▤ <span>Cetak PDF</span></button><button data-action="fullscreen" class="full" title="Layar penuh (F)" aria-label="Aktifkan layar penuh">⛶ <span>Full Screen</span></button></nav></header>`;
 }
 function Xt() {
   ((document.body.className = "home" + (q ? "" : " still")),
@@ -78,12 +78,12 @@ function Zt(e) {
 function en() {
   const { deck: e, index: n } = B,
     r = e.slides[n];
-  ((document.body.className = `presenting ${r.dark ? "dark" : "light"}${q ? "" : " still"}`),
+  ((document.body.className = `presenting deck-${e.id} ${r.dark ? "dark" : "light"}${q ? "" : " still"}${r.layout === "seed" ? " scene-finale" : ""}`),
     (document.title = `${n + 1}. ${r.title} — SUKA Presentasi`),
     (se.innerHTML =
       yt(!0) +
       `<main id="main" class="slide slide-${r.layout} deck-${R(e.id)}" tabindex="-1"><div class="slide-heading"><div class="eyebrow"><span>${String(n + 1).padStart(2, "0")} / ${e.slides.length}</span> ${R(r.eyebrow)}</div><h1>${R(r.title)}</h1>${r.layout !== "hero" && r.layout !== "closing" ? `<p class="intro">${R(r.intro)}</p>` : ""}</div>${Zt(r)}<div class="source-row">${r.source ? O(K[r.source], "Sumber resmi") : `<span>Materi narasumber • ${R(e.label || e.title)}</span>`}</div></main><footer class="controls"><button data-action="overview" title="Daftar slide (G)">▦ <span>Daftar slide</span></button><div class="progress" role="progressbar" aria-label="Kemajuan presentasi" aria-valuenow="${n + 1}" aria-valuemin="1" aria-valuemax="${e.slides.length}"><span style="width:${((n + 1) / e.slides.length) * 100}%"></span></div><span class="counter">${String(n + 1).padStart(2, "0")} / ${e.slides.length}</span><button data-action="notes" title="Catatan pembicara (N)" aria-label="Catatan pembicara">☷</button><button data-action="prev" aria-label="Slide sebelumnya" ${n === 0 ? "disabled" : ""}>←</button><button data-action="next" aria-label="Slide berikutnya" ${n === e.slides.length - 1 ? "disabled" : ""}>→</button></footer><dialog id="dialog" aria-labelledby="dialog-title"></dialog>`),
-    j == null || j.setMode(r.shape || 0),
+    j == null || j.setMode(e.id === "syubbanul-wathon" ? n : (r.shape || 0)),
     (Wt.textContent = `Slide ${n + 1} dari ${e.slides.length}. ${r.title}`),
     r.layout === "closing" &&
       Jt.toDataURL(K.admission, {
@@ -274,7 +274,7 @@ $e();
 xt(document.querySelector("#particles")).then((e) => {
   ((j = e),
     e.setEnabled(q),
-    e.setMode((B == null ? void 0 : B.deck.slides[B.index].shape) || 0));
+    e.setMode(B?.deck.id === "syubbanul-wathon" ? B.index : (B?.deck.slides[B.index].shape || 0)));
 });
 document.querySelector(".skip").addEventListener("click", (e) => {
   (e.preventDefault(), document.querySelector("#main").focus());

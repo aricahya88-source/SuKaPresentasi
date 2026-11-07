@@ -499,7 +499,7 @@ export const decks = [
         dark: true,
         shape: 8,
         seedCaption: "Dari Syubbanul Wathon, tumbuh benih-benih kebaikan untuk Indonesia.",
-        notes: "Bangunan berubah menjadi partikel, partikel membentuk benih, lalu benih tersebar ke seluruh Indonesia. Akhiri dengan Mars dan pesan pengabdian.",
+        notes: "Peta 3D Indonesia muncul, benih turun ke pulau-pulau, kemudian tumbuh menjadi pepohonan yang subur. Akhiri dengan pesan bahwa karakter dan pengabdian para santri dapat menumbuhkan kebaikan di seluruh Indonesia.",
       },
     ],
   },
