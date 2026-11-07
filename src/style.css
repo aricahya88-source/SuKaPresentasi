@@ -184,6 +184,14 @@ body:before {
 .deck-syubbanul-wathon .slide-heading h1 {
   max-width: 900px;
 }
+.deck-syubbanul-wathon #particles {
+  opacity: 0.96 !important;
+  filter: saturate(1.12) contrast(1.04);
+}
+.deck-syubbanul-wathon .building-scene > .building-3d,
+.deck-syubbanul-wathon .seed-scene {
+  visibility: hidden;
+}
 .deck-syubbanul-wathon .slide-heading .eyebrow {
   color: var(--gold);
 }
