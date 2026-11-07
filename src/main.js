@@ -182,7 +182,25 @@ function renderExperiencePhoto() {
   const gallery = document.querySelector('#sy-photo-gallery');
   if (!gallery) return;
   const photo = experiencePhotos[experiencePhotoIndex];
-  gallery.innerHTML = `<figure class="sy-photo-feature" style="--photo-index:${experiencePhotoIndex}"><div class="sy-photo-photoarea"><img src="${R(photo.src)}" alt="Dokumentasi pengalaman hidup dan mengabdi, foto ${photo.number} dari ${experiencePhotos.length}" decoding="async"><button type="button" class="sy-photo-arrow sy-photo-prev" data-action="gallery-prev" aria-label="Foto sebelumnya">‹</button><button type="button" class="sy-photo-arrow sy-photo-next" data-action="gallery-next" aria-label="Foto berikutnya">›</button></div><figcaption><span>JEJAK PENGABDIAN <b aria-live="polite">${String(photo.number).padStart(2, '0')} / ${String(experiencePhotos.length).padStart(2, '0')}</b></span><strong>${R(photo.name)}</strong></figcaption></figure><nav class="sy-photo-thumbs" aria-label="Pilih foto dokumentasi">${experiencePhotos.map((item, index) => `<button type="button" data-photo-index="${index}" ${index === experiencePhotoIndex ? 'aria-current="true"' : ''} aria-label="Tampilkan foto ${index + 1}: ${R(item.name)}"><img src="${R(item.src)}" alt="" loading="lazy" decoding="async"><span>${String(index + 1).padStart(2, '0')}</span></button>`).join('')}</nav><p class="sy-photo-help">Gunakan tombol ← → atau geser foto untuk berpindah · Esc untuk menutup</p>`;
+  gallery.innerHTML = `
+    <figure class="sy-photo-feature">
+      <div class="sy-photo-photoarea">
+        <img src="${R(photo.src)}" alt="Dokumentasi pengalaman hidup dan mengabdi, foto ${photo.number} dari ${experiencePhotos.length}" decoding="async">
+      </div>
+      <figcaption class="sr-only">Foto ${photo.number} dari ${experiencePhotos.length}: ${R(photo.name)}</figcaption>
+    </figure>
+    <div class="sy-photo-toolbar" aria-label="Navigasi foto">
+      <button type="button" class="sy-photo-arrow sy-photo-prev" data-action="gallery-prev" aria-label="Foto sebelumnya"><span aria-hidden="true">←</span><span class="sy-arrow-text">Sebelumnya</span></button>
+      <div class="sy-photo-info" role="status" aria-live="polite">
+        <strong>FOTO ${String(photo.number).padStart(2, '0')} / ${String(experiencePhotos.length).padStart(2, '0')}</strong>
+        <span title="${R(photo.name)}">${R(photo.name)}</span>
+      </div>
+      <button type="button" class="sy-photo-arrow sy-photo-next" data-action="gallery-next" aria-label="Foto berikutnya"><span class="sy-arrow-text">Berikutnya</span><span aria-hidden="true">→</span></button>
+    </div>
+    <nav class="sy-photo-thumbs" aria-label="Pilih foto dokumentasi">
+      ${experiencePhotos.map((item, index) => `<button type="button" data-photo-index="${index}" ${index === experiencePhotoIndex ? 'aria-current="true"' : ''} aria-label="Tampilkan foto ${index + 1}: ${R(item.name)}"><img src="${R(item.src)}" alt="" loading="lazy" decoding="async"><span>${String(index + 1).padStart(2, '0')}</span></button>`).join('')}
+    </nav>
+    <p class="sy-photo-help">Geser foto atau tekan ← → untuk berpindah · Esc untuk menutup</p>`;
   gallery.querySelector('[aria-current="true"]')?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
 }
 function changeExperiencePhoto(next) {
