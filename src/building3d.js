@@ -1,8 +1,16 @@
+import { gsap } from "gsap";
+
 const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
 
 function makeBuilding(T) {
   const root = new T.Group();
   const structure = new T.Group();
+  const lowerFloor = new T.Group();
+  const middleFloor = new T.Group();
+  const upperFloor = new T.Group();
+  const roofGroup = new T.Group();
+  const lights = [];
+  const windows = [];
   const green = new T.MeshStandardMaterial({ color: 0x173e32, roughness: 0.72, metalness: 0.06 });
   const cream = new T.MeshStandardMaterial({ color: 0xf2ead6, roughness: 0.68 });
   const wood = new T.MeshStandardMaterial({ color: 0x8d552b, roughness: 0.72 });
@@ -16,20 +24,22 @@ function makeBuilding(T) {
     parent.add(mesh);
     return mesh;
   };
-  const slab = box(3.9, 0.16, 2.45, cream, 0, 0.18, 0);
-  box(3.55, 1.05, 2.05, cream, 0, 0.78, 0);
-  box(2.8, 0.68, 1.85, wood, -0.12, 1.58, 0.02);
-  box(2.7, 0.18, 2.08, gold, 0.18, 2.02, 0);
-  box(3.25, 0.18, 2.1, cream, 0.15, 2.3, 0);
-  box(2.22, 0.78, 1.45, cream, 0.26, 2.78, 0.02);
-  box(2.42, 0.16, 1.65, green, 0.26, 3.2, 0);
-  box(1.05, 0.12, 2.2, wood, -1.38, 1.98, 0.02);
+  const addTo = (parent, w, h, d, material, x, y, z) => box(w, h, d, material, x, y, z, parent);
+  const slab = addTo(lowerFloor, 3.9, 0.16, 2.45, cream, 0, 0.18, 0);
+  addTo(lowerFloor, 3.55, 1.05, 2.05, cream, 0, 0.78, 0);
+  addTo(middleFloor, 2.8, 0.68, 1.85, wood, -0.12, 1.58, 0.02);
+  addTo(middleFloor, 2.7, 0.18, 2.08, gold, 0.18, 2.02, 0);
+  addTo(upperFloor, 3.25, 0.18, 2.1, cream, 0.15, 2.3, 0);
+  addTo(upperFloor, 2.22, 0.78, 1.45, cream, 0.26, 2.78, 0.02);
+  addTo(roofGroup, 2.42, 0.16, 1.65, green, 0.26, 3.2, 0);
+  addTo(middleFloor, 1.05, 0.12, 2.2, wood, -1.38, 1.98, 0.02);
 
-  for (const x of [-1.25, -0.42, 0.45, 1.2]) box(0.45, 0.52, 0.035, glass, x, 0.95, 1.04);
-  for (const x of [-0.96, -0.24, 0.5]) box(0.42, 0.42, 0.035, glass, x, 1.58, 0.96);
-  for (const x of [-0.55, 0.2, 0.9]) box(0.38, 0.34, 0.035, glass, x, 2.7, 0.74);
-  for (const x of [-1.55, 1.55]) box(0.12, 1.22, 0.16, green, x, 0.82, 0.92);
-  for (const x of [-1.08, 1.08]) box(0.12, 1.02, 0.16, green, x, 2.55, 0.72);
+  for (const x of [-1.25, -0.42, 0.45, 1.2]) windows.push(addTo(lowerFloor, 0.45, 0.52, 0.035, glass, x, 0.95, 1.04));
+  for (const x of [-0.96, -0.24, 0.5]) windows.push(addTo(middleFloor, 0.42, 0.42, 0.035, glass, x, 1.58, 0.96));
+  for (const x of [-0.55, 0.2, 0.9]) windows.push(addTo(upperFloor, 0.38, 0.34, 0.035, glass, x, 2.7, 0.74));
+  for (const x of [-1.55, 1.55]) addTo(lowerFloor, 0.12, 1.22, 0.16, green, x, 0.82, 0.92);
+  for (const x of [-1.08, 1.08]) addTo(upperFloor, 0.12, 1.02, 0.16, green, x, 2.55, 0.72);
+  lights.push(...windows);
 
   const ground = box(5.2, 0.08, 3.9, new T.MeshStandardMaterial({ color: 0x254e36, roughness: 1 }), 0, 0.02, 0, root);
   ground.receiveShadow = true;
@@ -47,9 +57,15 @@ function makeBuilding(T) {
     crown.userData.plantPart = true;
   }
 
+  structure.add(lowerFloor, middleFloor, upperFloor, roofGroup);
   root.add(structure);
-  root.userData.buildingParts = [foundation, baseGlow, slab, ...structure.children];
+  root.userData.buildingParts = [foundation, baseGlow, slab, lowerFloor, middleFloor, upperFloor, roofGroup];
   root.userData.structure = structure;
+  root.userData.floors = [lowerFloor, middleFloor, upperFloor];
+  root.userData.floors.forEach((floor) => { floor.userData.baseY = floor.position.y; });
+  root.userData.roof = roofGroup;
+  root.userData.lights = lights;
+  root.userData.pose = { lift: 0, turn: 0, zoom: 1 };
   return root;
 }
 
@@ -145,6 +161,25 @@ export async function createBuildingScene(canvas) {
   let last = 0;
   let mode = 0;
   let disposed = false;
+  let transition;
+  const pose = { lift: 0, turn: 0, zoom: 1, cameraZ: 7.1, cameraY: 1.05 };
+  const slidePoses = [
+    { turn: -0.2, lift: -0.28, zoom: 0.72, cameraZ: 7.8, cameraY: 0.72 },
+    { turn: 0.12, lift: -0.08, zoom: 0.84, cameraZ: 7.4, cameraY: 0.95 },
+    { turn: -0.08, lift: 0.02, zoom: 0.92, cameraZ: 7.0, cameraY: 1.1 },
+    { turn: 0.04, lift: 0.08, zoom: 0.98, cameraZ: 6.8, cameraY: 1.2 },
+    { turn: -0.18, lift: 0.12, zoom: 1.03, cameraZ: 6.6, cameraY: 1.3 },
+    { turn: 0.18, lift: 0.16, zoom: 1.07, cameraZ: 6.5, cameraY: 1.38 },
+    { turn: -0.12, lift: 0.08, zoom: 1.12, cameraZ: 6.4, cameraY: 1.3 },
+    { turn: 0.12, lift: 0.18, zoom: 1.08, cameraZ: 6.3, cameraY: 1.42 },
+    { turn: -0.28, lift: 0.28, zoom: 1.16, cameraZ: 6.1, cameraY: 1.52 },
+    { turn: 0.22, lift: 0.2, zoom: 1.1, cameraZ: 6.35, cameraY: 1.35 },
+    { turn: -0.14, lift: 0.1, zoom: 1.04, cameraZ: 6.7, cameraY: 1.2 },
+    { turn: 0.1, lift: 0.06, zoom: 1, cameraZ: 7.0, cameraY: 1.1 },
+    { turn: -0.18, lift: 0.15, zoom: 1.08, cameraZ: 6.5, cameraY: 1.3 },
+    { turn: 0.2, lift: 0.25, zoom: 1.13, cameraZ: 6.25, cameraY: 1.45 },
+    { turn: -0.1, lift: 0.3, zoom: 1.18, cameraZ: 6.05, cameraY: 1.55 },
+  ];
 
   function resize() {
     renderer.setSize(innerWidth, innerHeight, false);
@@ -179,13 +214,15 @@ export async function createBuildingScene(canvas) {
     parts.forEach((part, index) => {
       const reveal = clamp(stage * 1.45 - index / Math.max(parts.length, 1), 0, 1);
       part.scale.y = Math.max(0.04, reveal);
-      part.position.y += (part.userData.baseY ?? part.position.y) * 0;
-      part.material.transparent = true;
-      part.material.opacity = 0.28 + reveal * 0.72;
+      if (part.material) {
+        part.material.transparent = true;
+        part.material.opacity = 0.28 + reveal * 0.72;
+      }
     });
-    building.rotation.y = mouse.x * 0.16 + Math.sin(now * 0.00025) * 0.04;
+    building.rotation.y = pose.turn + mouse.x * 0.16 + Math.sin(now * 0.00025) * 0.04;
     building.rotation.x = mouse.y * 0.06;
-    building.position.y = Math.sin(now * 0.00075) * 0.035;
+    building.position.y = pose.lift + Math.sin(now * 0.00075) * 0.035;
+    building.scale.setScalar(pose.zoom);
   }
   function paint(now) {
     if (!isBuildingDeck()) return;
@@ -199,8 +236,8 @@ export async function createBuildingScene(canvas) {
       camera.position.y += (0.95 - camera.position.y) * 0.035;
     } else {
       animateBuilding(now);
-      camera.position.z += (7.1 - camera.position.z) * 0.035;
-      camera.position.y += (1.05 - camera.position.y) * 0.035;
+      camera.position.z += (pose.cameraZ - camera.position.z) * 0.035;
+      camera.position.y += (pose.cameraY - camera.position.y) * 0.035;
     }
     camera.lookAt(0, final ? 0.35 : 1.25, 0);
     renderer.render(scene, camera);
@@ -214,6 +251,25 @@ export async function createBuildingScene(canvas) {
     raf = requestAnimationFrame(tick);
   }
   function requestTick() { if (!raf && visible && !disposed) raf = requestAnimationFrame(tick); }
+  function transitionBuilding(next) {
+    const target = slidePoses[next % slidePoses.length];
+    transition?.kill();
+    transition = gsap.timeline({ defaults: { duration: 0.95, ease: "power3.inOut" } });
+    transition.to(pose, target, 0);
+    const floors = building.userData.floors;
+    const floorIndex = next % floors.length;
+    floors.forEach((floor, index) => {
+      const lift = index <= floorIndex ? 0 : 0.32;
+      transition.to(floor.position, { y: floor.userData.baseY + lift, duration: 0.7, ease: "back.out(1.4)" }, index * 0.06);
+      transition.to(floor.rotation, { z: index === floorIndex ? 0.025 : 0 }, index * 0.06);
+    });
+    transition.to(building.userData.roof.rotation, { y: next % 2 ? 0.04 : -0.04, duration: 0.6 }, 0.12);
+    building.userData.lights.forEach((light, index) => {
+      light.material.emissiveIntensity = 0.2;
+      transition.to(light.material, { emissiveIntensity: 1.5, duration: 0.22, yoyo: true, repeat: 1 }, 0.08 + index * 0.045);
+    });
+    requestTick();
+  }
   const move = (event) => { mouse.x = event.clientX / innerWidth - 0.5; mouse.y = event.clientY / innerHeight - 0.5; };
   const visibility = () => { visible = !document.hidden; if (visible) requestTick(); else cancelAnimationFrame(raf); };
   addEventListener("resize", resize);
@@ -222,7 +278,11 @@ export async function createBuildingScene(canvas) {
   resize();
   requestTick();
   return {
-    setMode(next) { mode = Number.isInteger(next) ? next : 0; requestTick(); },
+    setMode(next) {
+      mode = Number.isInteger(next) ? next : 0;
+      if (!isFinal()) transitionBuilding(mode);
+      requestTick();
+    },
     setEnabled(value) { enabled = Boolean(value); requestTick(); },
     dispose() {
       disposed = true;
