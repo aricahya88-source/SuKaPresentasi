@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080e29">
+  <meta name="description" content="Curriculum Vitae akademik interaktif Ari Cahya Mawardi, berisi profil profesional, pengalaman, pengajaran, dan publikasi.">
+  <title>Curriculum Vitae — Ari Cahya Mawardi</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./script.js"></script>
+</head>
+<body>
+  <canvas id="constellation" aria-hidden="true"></canvas>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <main class="presentation" id="presentation" aria-label="Curriculum Vitae akademik satu slide">
+    <div class="presentation-frame">
+      <header class="topbar entrance" style="--delay:.1s">
+        <div class="brand" aria-label="Curriculum Vitae Ari Cahya Mawardi">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <div class="brand-copy"><strong>AC<span>MAWARDI</span></strong><small>ACADEMIC CURRICULUM VITAE</small></div>
+        </div>
+        <div class="top-right"><span class="top-indicator"><span class="live-dot"></span> ACADEMIC CV</span><span class="edition">PROFESSIONAL PORTFOLIO</span></div>
+      </header>
+
+      <section class="slide-content" aria-labelledby="slide-title">
+        <div class="hero-left">
+          <div class="eyebrow entrance" style="--delay:.25s"><span class="eyebrow-line"></span> PROFIL PROFESIONAL & AKADEMIK <span class="eyebrow-number">/ CV</span></div>
+          <h1 id="slide-title" class="hero-title entrance" style="--delay:.39s">Curri<span class="highlighted">culum</span><br><span class="last-line">Vitae<span class="title-period">.</span></span></h1>
+          <p class="hero-subtitle entrance" style="--delay:.6s">Perjalanan akademik, pengalaman mengajar, dan kontribusi penelitian dalam satu profil profesional.</p>
+
+          <div class="portrait-area entrance" style="--delay:.75s">
+            <div class="orbit orbit-outer" aria-hidden="true"><span class="orbit-star star-one"></span><span class="orbit-star star-two"></span></div>
+            <div class="orbit orbit-inner" aria-hidden="true"></div>
+            <div class="portrait-glow" aria-hidden="true"></div>
+            <div class="portrait-card" id="portrait-card">
+              <div class="photo-placeholder" id="photo-placeholder" aria-hidden="true"><span>ACM</span><small>ACADEMIC PROFILE</small></div>
+              <img class="tutor-photo" id="tutor-photo" src="https://qwnlhjsodmlaj9a7.public.blob.vercel-storage.com/Ari%20Cahya%20M%20%281%29.png" alt="Foto Ari Cahya Mawardi" referrerpolicy="no-referrer">
+              <div class="portrait-shine" aria-hidden="true"></div>
+              <div class="portrait-bottom"><span class="photo-label">PERSONAL PROFILE</span><span class="photo-index">ACM / CV</span></div>
+            </div>
+            <div class="floating-tag tag-upper"><span class="tag-icon">✦</span> EDUCATION & MEDIA</div>
+            <div class="floating-tag tag-lower"><span class="tag-icon green">●</span> RESEARCH & TEACHING</div>
+          </div>
+        </div>
+
+        <div class="hero-right entrance" style="--delay:.65s">
+          <div class="profile-heading">
+            <span class="overline"><span class="overline-square"></span> ACADEMIC PROFILE</span>
+            <h2>Ari Cahya<br><em>Mawardi</em><span class="name-dot">.</span></h2>
+            <div class="role-line"><span class="role-pulse"></span> Dosen Media Pembelajaran <span class="role-divider"></span> UIN Sunan Kalijaga Yogyakarta</div>
+          </div>
+
+          <div class="info-shell">
+            <nav class="tabbar" aria-label="Kategori curriculum vitae" role="tablist">
+              <button class="tab is-active" id="tab-profil" type="button" role="tab" aria-selected="true" aria-controls="panel-profil" data-tab="profil"><span class="tab-icon">01</span><span>Profil</span></button>
+              <button class="tab" id="tab-pengalaman" type="button" role="tab" aria-selected="false" aria-controls="panel-pengalaman" data-tab="pengalaman" tabindex="-1"><span class="tab-icon">02</span><span>Pengalaman</span></button>
+              <button class="tab" id="tab-pengajaran" type="button" role="tab" aria-selected="false" aria-controls="panel-pengajaran" data-tab="pengajaran" tabindex="-1"><span class="tab-icon">03</span><span>Pengajaran</span></button>
+              <button class="tab" id="tab-publikasi" type="button" role="tab" aria-selected="false" aria-controls="panel-publikasi" data-tab="publikasi" tabindex="-1"><span class="tab-icon">04</span><span>Publikasi</span></button>
+            </nav>
+
+            <div class="panel-stage" id="panel-stage">
+              <section class="content-panel is-active" id="panel-profil" role="tabpanel" aria-labelledby="tab-profil">
+                <div class="panel-top"><div><span class="panel-kicker">01 — IDENTITAS PROFESIONAL</span><h3>Profil Akademik</h3></div><div class="corner-symbol" aria-hidden="true">✦</div></div>
+                <div class="detail-grid">
+                  <div class="detail"><span>Nama Lengkap</span><strong>Ari Cahya Mawardi</strong></div>
+                  <div class="detail"><span>Kepakaran</span><strong>Dosen Media Pembelajaran</strong></div>
+                  <div class="detail full"><span>Institusi / Home Base</span><strong>UIN Sunan Kalijaga Yogyakarta</strong></div>
+                </div>
+                <div class="panel-callout"><span class="callout-spark">✳</span><div><strong>Bidang keilmuan dan kontribusi akademik</strong><p>Media pembelajaran, pengajaran, dan pengembangan pengalaman belajar berbasis teknologi.</p></div></div>
+              </section>
+
+              <section class="content-panel" id="panel-pengalaman" role="tabpanel" aria-labelledby="tab-pengalaman" hidden>
+                <div class="panel-top"><div><span class="panel-kicker">02 — RIWAYAT KEGIATAN AKADEMIK</span><h3>Pengalaman Mengajar</h3></div><div class="corner-symbol" aria-hidden="true">↗</div></div>
+                <div class="course-cards">
+                  <article class="course-card"><span class="course-number">01</span><div><strong>Belajar di Era Digital</strong><p>Pengajaran daring · MKDI4202 · Universitas Terbuka</p></div><span class="course-arrow">↗</span></article>
+                  <article class="course-card"><span class="course-number">02</span><div><strong>Pengembangan Bahan Ajar</strong><p>Pengajaran daring · SPIK4009 · Universitas Terbuka</p></div><span class="course-arrow">↗</span></article>
+                </div>
+                <div class="experience-line"><span class="experience-glyph">◎</span><div><span>PENGALAMAN PEMBELAJARAN DARING</span><strong>Pancasila dan Kewarganegaraan</strong></div></div>
+              </section>
+
+              <section class="content-panel" id="panel-pengajaran" role="tabpanel" aria-labelledby="tab-pengajaran" hidden>
+                <div class="panel-top"><div><span class="panel-kicker">03 — PENDIDIKAN & PENGAJARAN</span><h3>Bidang Pengajaran</h3></div><div class="corner-symbol" aria-hidden="true">◈</div></div>
+                <ul class="teaching-list">
+                  <li><span>01</span><strong>Inovasi Media Pembelajaran Bahasa Arab</strong><i>↗</i></li>
+                  <li><span>02</span><strong>Kurikulum dan Tren Pendidikan Fisika</strong><i>↗</i></li>
+                  <li><span>03</span><strong>Metode Penelitian Pendidikan Fisika</strong><i>↗</i></li>
+                  <li><span>04</span><strong>Multimedia Pembelajaran Fisika</strong><i>↗</i></li>
+                  <li><span>05</span><strong>Profesi Kependidikan</strong><i>↗</i></li>
+                </ul>
+              </section>
+
+              <section class="content-panel" id="panel-publikasi" role="tabpanel" aria-labelledby="tab-publikasi" hidden>
+                <div class="panel-top"><div><span class="panel-kicker">04 — PENELITIAN & PUBLIKASI</span><h3>Jejak Penelitian</h3></div><div class="corner-symbol" aria-hidden="true">⌁</div></div>
+                <div class="research-list" id="research-list" aria-label="Daftar publikasi tahun 2022 hingga 2026"></div>
+                <div class="research-note">11 judul publikasi / penelitian · 2022—2026 <span>GESER UNTUK MEMBACA ↓</span></div>
+              </section>
+            </div>
+            <div class="shell-bottom"><span class="bottom-caption"><span class="caption-dot"></span> CURRICULUM VITAE • AKADEMIK</span><span class="panel-count" id="panel-count">01 <span>/ 04</span></span></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="bottom-bar entrance" style="--delay:1.12s">
+        <div class="slide-identity"><span class="identity-line"></span><span>ARI CAHYA MAWARDI <span class="footer-separator">/</span> CURRICULUM VITAE</span></div>
+        <div class="slide-controls"><button class="control-button" id="replay-button" type="button" aria-label="Ulangi animasi" title="Ulangi animasi">↺</button><button class="play-button" id="play-button" type="button" aria-pressed="false"><span class="play-icon" id="play-icon">▶</span><span id="play-label">PUTAR OTOMATIS</span></button><button class="control-button fullscreen-button" id="fullscreen-button" type="button" aria-label="Layar penuh" title="Layar penuh">⛶</button></div>
+        <span class="footer-tip">SATU SLIDE · EMPAT BAGIAN INTERAKTIF</span>
+      </footer>
+      <div class="timeline" aria-hidden="true"><span class="timeline-fill" id="timeline-fill"></span></div>
+    </div>
+  </main>
+  <p class="sr-only" id="announcement" aria-live="polite"></p>
+</body>
+</html>

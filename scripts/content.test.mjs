@@ -18,13 +18,19 @@ test("10 slide Pendidikan Fisika dan 10 bentuk unik", () => {
   assert.equal(parseRoute("#/presentasi/unknown/6"), null);
   assert.equal(parseRoute("#/presentasi/pendidikan-fisika/999").index, 9);
 });
-test("deck SMA Syubbanul Wathon tetap tersedia", () => {
+test("deck SMA Syubbanul Wathon lengkap dengan 17 slide dan legacy", () => {
   const d = decks.find((deck) => deck.id === "syubbanul-wathon");
   assert.ok(d);
-  assert.equal(d.slides.length, 16);
-  assert.equal(d.slides[3].layout, "building");
-  assert.equal(d.slides[15].layout, "seed");
-  assert.equal(parseRoute("#/presentasi/syubbanul-wathon/16").index, 15);
+  assert.equal(d.slides.length, 17);
+  assert.equal(d.slides[1].layout, "cv");
+  assert.equal(d.slides[2].timeline.length, 3);
+  assert.equal(d.slides[3].scene, "foundation");
+  assert.equal(d.slides[7].scene, "complete");
+  assert.equal(d.slides[10].title, "AI Tidak Akan Menggantikan Santri!");
+  assert.equal(d.slides[15].layout, "nusantara");
+  assert.equal(d.slides[16].layout, "sospro");
+  assert.equal(parseRoute("#/presentasi/syubbanul-wathon/17").index, 16);
+  assert.ok(d.slides.every(slide => slide.title && slide.notes));
 });
 test("seluruh bentuk deterministik, finite, dan berbeda", () => {
   assert.equal(shapeNames.length, 10);

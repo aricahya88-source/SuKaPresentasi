@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#061a21" />
+    <meta name="description" content="Pengalaman visual interaktif: benih unggul disemai, bertunas, dan menghijaukan peta nyata Nusantara." />
+    <title>Nusantara Bertumbuh — Menanam Harapan untuk Indonesia</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="#beranda" aria-label="Nusantara Bertumbuh, kembali ke awal">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 39V25" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/><path d="M24 29C12 29 8 23 9 12c10 0 16 5 15 17ZM24 23c0-11 6-17 17-17 1 11-6 17-17 17Z" fill="currentColor" opacity=".9"/><circle cx="24" cy="41" r="2" fill="#e5c98a"/></svg>
+          </span>
+          <span><strong>NUSANTARA</strong><small>BERTUMBUH</small></span>
+        </a>
+        <nav class="topnav" aria-label="Navigasi utama">
+          <a href="#visualisasi">Visualisasi</a>
+          <a href="#cerita">Narasi</a>
+        </nav>
+        <button type="button" class="topbar-action" id="headerFullscreen" aria-label="Buka mode layar penuh">
+          <span class="topbar-action-dot" aria-hidden="true"></span> Mode Presentasi
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3"/></svg>
+        </button>
+      </header>
+
+      <main id="beranda">
+        <section class="hero" aria-labelledby="heroTitle">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-line"></span> SEBUAH PERJALANAN PERTUMBUHAN</p>
+            <h1 id="heroTitle">Menanam Hari Ini.<br /><em>Menumbuhkan Indonesia.</em></h1>
+            <p class="hero-description">Dari satu benih penuh harapan, lahir kehidupan baru. Saksikan benih unggul disemai, bertunas, lalu tumbuh dari Sabang hingga Merauke.</p>
+            <a class="hero-cta" href="#visualisasi"><span class="cta-play" aria-hidden="true">▶</span> Saksikan Animasi <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-aside" aria-hidden="true">
+            <div class="hero-aside-ring ring-a"></div><div class="hero-aside-ring ring-b"></div>
+            <div class="hero-orb"><svg viewBox="0 0 100 100" fill="none"><path d="M50 80V49" stroke="#a9ecd2" stroke-width="3" stroke-linecap="round"/><path d="M50 55C27 55 21 44 24 25c21 0 29 11 26 30ZM50 44c0-21 11-32 31-32 2 21-10 32-31 32Z" fill="#91dbb0"/><path d="M38 85h24" stroke="#c7a96b" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div class="hero-aside-label"><span>01 / 04</span><strong>BENIH MENJADI MASA DEPAN</strong></div>
+          </div>
+        </section>
+
+        <section id="visualisasi" class="visual-section" aria-labelledby="visualTitle">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker"><span class="live-dot"></span> VISUALISASI INTERAKTIF</p>
+              <h2 id="visualTitle">Nusantara yang <span>terus bertumbuh.</span></h2>
+              <p>Peta geografis Indonesia • animasi penyemaian hingga tanaman tumbuh</p>
+            </div>
+            <div class="scene-status"><span class="scene-status-icon">✦</span><span><small>FASE ANIMASI</small><strong id="sceneName">Membuka Peta Nusantara</strong></span></div>
+          </div>
+
+          <div class="cinema" id="cinema">
+            <div class="map-stage" id="mapStage" role="img" aria-label="Peta geografis Indonesia yang dianimasikan dengan penyemaian benih hingga bibit tumbuh di seluruh kepulauan">
+              <div class="stage-grid" aria-hidden="true"></div>
+              <div class="stage-light stage-light-a" aria-hidden="true"></div>
+              <div class="stage-light stage-light-b" aria-hidden="true"></div>
+              <div class="stage-topline"><span class="stage-badge"><span class="badge-sparkle">✦</span> INDONESIA / THE ARCHIPELAGO</span><span class="stage-coordinates">95° BT — 141° BT &nbsp; / &nbsp; 11° LS — 6° LU</span></div>
+              <svg id="mapSvg" class="map-svg" viewBox="0 0 1400 660" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <defs>
+                  <linearGradient id="landFill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#19554b"/><stop offset=".56" stop-color="#237663"/><stop offset="1" stop-color="#2b9d75"/></linearGradient>
+                  <linearGradient id="grownFill" x1="0" y1="0" x2=".85" y2="1"><stop offset="0" stop-color="#3ba77c"/><stop offset=".48" stop-color="#4dcd8d"/><stop offset="1" stop-color="#95eb9b"/></linearGradient>
+                  <linearGradient id="sweepFill" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b6ffd0" stop-opacity="0"/><stop offset=".55" stop-color="#e0ffcf" stop-opacity=".15"/><stop offset="1" stop-color="#e0ffcf" stop-opacity="0"/></linearGradient>
+                  <filter id="coastGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
+                  <clipPath id="revealClip"><rect id="revealRect" x="60" y="88" width="0" height="490"/></clipPath>
+                </defs>
+                <g id="mapBase" opacity="0.23"></g>
+                <g id="mapReveal" clip-path="url(#revealClip)"><g id="mapGlow"></g><g id="mapLand"></g><g id="mapGrown" opacity="0"></g></g>
+                <path id="scanBeam" d="M0 70 V590" stroke="#c6ffda" stroke-width="2" opacity="0"/>
+              </svg>
+              <canvas id="growthCanvas" class="growth-canvas" aria-hidden="true"></canvas>
+              <div class="map-labels" id="mapLabels" aria-hidden="true"></div>
+              <div class="stage-narrative" aria-live="polite"><span class="stage-narrative-line"></span><div><span id="narrativeKicker">BABAK PERTAMA</span><strong id="narrativeText">Sebuah negeri dengan ribuan pulau dan sejuta harapan.</strong></div></div>
+              <div class="stage-counter"><small>TITIK TUMBUH VISUAL</small><strong id="seedCount">000</strong><span id="growthIndicator">Menyiapkan lahan...</span></div>
+              <div class="stage-bottomline"><span>VISUAL STORY / NUSANTARA BERTUMBUH</span><span id="stagePercent">00%</span></div>
+              <div class="stage-loading" id="stageLoading"><span class="loading-orb"></span><span id="loadingText">Menyiapkan peta Indonesia...</span></div>
+            </div>
+
+            <div class="player">
+              <div class="player-main">
+                <button id="playPause" class="player-play" type="button" aria-label="Jeda animasi"><svg class="icon-pause" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></button>
+                <button id="restart" class="player-icon" type="button" title="Ulangi dari awal" aria-label="Ulangi animasi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2.8 6.5"/><path d="M3 4v7h7"/></svg></button>
+                <div class="player-timeline"><div class="timeline-meta"><span id="currentTime">00:00</span><span class="timeline-title">PERJALANAN SEBUAH BENIH</span><span id="totalTime">00:24</span></div><input id="timeline" class="timeline-input" type="range" min="0" max="1000" value="0" step="1" aria-label="Posisi animasi" /></div>
+                <button id="fullscreen" class="player-icon fullscreen" type="button" title="Layar penuh" aria-label="Layar penuh"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3"/></svg></button>
+              </div>
+              <div class="chapters" role="group" aria-label="Lompat ke fase animasi">
+                <button class="chapter active" data-seek="0" type="button"><span>01</span> Peta Indonesia</button>
+                <button class="chapter" data-seek="0.23" type="button"><span>02</span> Penyemaian</button>
+                <button class="chapter" data-seek="0.54" type="button"><span>03</span> Tunas Kehidupan</button>
+                <button class="chapter" data-seek="0.83" type="button"><span>04</span> Indonesia Bertumbuh</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="visual-note"><span>ⓘ</span> Visualisasi artistik berbasis peta geografis, bukan peta kegiatan pertanian atau data hasil tanam sesungguhnya. <span class="desktop-note">Gunakan spasi untuk putar/jeda dan R untuk mengulang.</span></p>
+        </section>
+
+        <section id="cerita" class="story" aria-labelledby="storyTitle">
+          <div class="story-heading"><p class="eyebrow"><span class="eyebrow-line"></span> CERITA DI BALIK SETIAP TUNAS</p><h2 id="storyTitle">Sebuah perjalanan,<br /><em>empat babak harapan.</em></h2></div>
+          <div class="story-steps">
+            <article><span class="story-number">01 <span>—</span></span><div class="story-icon">◎</div><h3>Negeri Kepulauan</h3><p>Indonesia hadir dalam bentuk geografisnya, dari ujung barat hingga timur.</p></article>
+            <article><span class="story-number">02 <span>—</span></span><div class="story-icon">✧</div><h3>Benih Disemai</h3><p>Ribuan harapan kecil jatuh dan tersebar melintasi seluruh gugusan pulau.</p></article>
+            <article><span class="story-number">03 <span>—</span></span><div class="story-icon">♧</div><h3>Tunas Kehidupan</h3><p>Setiap benih berakar, lalu memunculkan daun pertama yang penuh harapan.</p></article>
+            <article><span class="story-number">04 <span>—</span></span><div class="story-icon">✺</div><h3>Nusantara Hijau</h3><p>Pertumbuhan menyatu menjadi gambaran masa depan Indonesia yang subur.</p></article>
+          </div>
+        </section>
+
+        <section class="closing"><span class="closing-spark">✳</span><p>“Karena masa depan yang besar,<br />selalu dimulai dari <em>benih yang kecil.</em>”</p><span class="closing-caption">DARI SABANG SAMPAI MERAUKE • SATU INDONESIA</span></section>
+      </main>
+      <footer><span>© 2026 NUSANTARA BERTUMBUH</span><span>Basis peta: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a> (domain publik) • Adaptasi visual interaktif</span></footer>
+    </div>
+    <script src="./data/indonesia-data.js"></script>
+    <script src="./app.js" defer></script>
+  </body>
+</html>

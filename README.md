@@ -1,29 +1,28 @@
-# SUKA Presentasi — Pendidikan Fisika & SMA Syubbanul Wathon (v3.0)
+# Dari Syubbanul Wathon untuk Indonesia — Presentasi Interaktif
 
-Website presentasi statis Pendidikan Fisika, Fakultas Ilmu Tarbiyah dan Keguruan, UIN Sunan Kalijaga Yogyakarta. Paket lengkap untuk GitHub dan Vercel. Tidak memerlukan database, akun, API key, atau backend.
+Website presentasi 17 slide untuk Expo Campus / Guest Teacher oleh **Ari Cahya Mawardi**, mengintegrasikan empat proyek yang diberikan:
 
-## Deploy melalui GitHub → Vercel
+1. **SuKaPresentasi** sebagai kerangka rute, tombol, catatan pembicara, PDF, dan deck Pendidikan Fisika opsional.
+2. **NEXORA 3D V1.0** sebagai model bangunan Three.js asli dengan 14 kelompok komponen dan fase animasi nyata.
+3. **Curriculum Vitae Ari Cahya Mawardi v2** sebagai satu slide HTML interaktif dengan empat tab.
+4. **Nusantara Bertumbuh** sebagai animasi peta geografis Indonesia, penyemaian, dan pertumbuhan tanaman.
 
-1. Ekstrak ZIP. Buka folder `suka-presentasi`.
-2. Buat repository GitHub dan upload **isi folder** ke root repository. Pastikan `package.json`, `package-lock.json`, `index.html`, `src/`, `public/`, dan `vercel.json` ada di root. Jangan upload ZIP sebagai isi repository.
-3. Di Vercel pilih Add New → Project dan impor repository.
-4. Framework: **Vite**. Root Directory: `./` (atau folder `suka-presentasi` jika ada folder pembungkus).
-5. Install: `npm ci`. Build: `npm run build`. Output: `dist`. Node.js: **22.x atau 24.x**.
-6. Environment Variables: tidak diperlukan. Klik Deploy.
-7. Buka domain hasil deploy, uji navigasi, animasi, Full Screen, Cetak PDF, dan pindai QR admisi.
+Website **tidak memerlukan database, API key, autentikasi, atau backend**. Aset animasi disimpan lokal. Tautan penerimaan mahasiswa menuju website resmi UIN Sunan Kalijaga.
 
-Konfigurasi build tersedia di `vercel.json`. Rute hash memungkinkan refresh slide langsung tanpa rewrite server.
+## Memulai di komputer
 
-## Menjalankan lokal
-
-Pasang Node.js 22+ lalu buka terminal pada folder proyek:
+Prasyarat: **Node.js 22+** dan browser modern dengan WebGL. Ekstrak ZIP hingga terlihat `package.json`.
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Buka localhost yang ditampilkan. Jangan membuka `index.html` melalui klik dua kali; source memerlukan server modul.
+Buka URL lokal yang muncul, lalu pilih kartu **Syubbanul Wathon**. Untuk langsung membuka slide pembuka gunakan:
+
+`http://localhost:5173/#/presentasi/syubbanul-wathon/1`
+
+Jika port bukan 5173, sesuaikan dengan alamat terminal. Jalankan pengujian dan produksi dengan:
 
 ```bash
 npm test
@@ -31,76 +30,82 @@ npm run build
 npm run preview
 ```
 
-`dist/` berisi hasil build siap dilayani server statis. Library runtime dan foto dibundel lokal; internet diperlukan untuk instalasi dan membuka kanal eksternal. Tidak menggunakan CDN runtime dan tidak memiliki service worker/offline cache otomatis.
+`dist/` adalah hasil build untuk web statis. Semua animasi lokal disalin oleh Vite ke `dist/`.
 
-## Sepuluh slide dan bentuk partikel
+## Mengunggah ke GitHub dan deploy ke Vercel
 
-| Slide | Materi | Bentuk |
+1. Upload **seluruh isi folder proyek** ke root repository GitHub; jangan hanya upload ZIP atau folder `dist`.
+2. Import repo ke Vercel. Framework preset: **Vite**.
+3. Install Command `npm ci`, Build Command `npm run build`, Output Directory `dist`.
+4. Gunakan Node.js 22+ (direkomendasikan 22.x atau 24.x). Tidak ada environment variable wajib.
+5. Deploy, lalu uji slide NEXORA di browser target, foto CV, animasi penutup, dan QR admisi.
+
+Rute menggunakan hash (`#/presentasi/...`), sehingga bisa dibuka ulang langsung tanpa konfigurasi rewrite.
+
+## Isi 17 slide
+
+| No. | Judul | Visual utama |
 | --- | --- | --- |
-| 1 | Menguasai Fisika, Menginspirasi Generasi | Bola |
-| 2 | Kenali rumah belajarmu | Saturnus |
-| 3 | Mengapa Pendidikan Fisika? | Galaksi spiral |
-| 4 | Gambaran kompetensi belajar | Gelombang |
-| 5 | Ciri khas prodi | Heliks ganda |
-| 6 | Media dan proyek pembelajaran | Torus |
-| 7 | HMPS dan Study Club | Konstelasi |
-| 8 | Pengalaman sekolah dan mobilitas internasional | Tata surya |
-| 9 | Profil lulusan | Orbit atom |
-| 10 | Ajakan bergabung dan admisi | Nebula bintang |
+| 1 | Dari Syubbanul Wathon untuk Indonesia | NEXORA utuh untuk pembuka |
+| 2 | Curriculum Vitae — Ari Cahya Mawardi | CV satu slide, empat tab |
+| 3 | Pengalaman hidup dan mengabdi | Timeline 2013, 2014–2018, 2019–sekarang |
+| 4 | Good Character adalah pondasi | Fondasi NEXORA, Legacy I |
+| 5 | Dari pondasi menjadi watak | Kolom dan balok NEXORA |
+| 6 | Ilmu, adab, dan kompetensi | Lantai dua dan tangga NEXORA |
+| 7 | Ilmu membuka pintu. Karakter membuat dipercaya | Kaca, fasad, dan atap NEXORA |
+| 8 | Mars yang menjadi arah perjalanan | Bangunan utuh dan taman, Legacy II |
+| 9 | Generasi Z di tengah revolusi AI | Tantangan abad ke-21 |
+| 10 | Ketika AI semakin cerdas | Kemampuan dan batas AI |
+| 11 | AI Tidak Akan Menggantikan Santri! | Manifesto empat nilai santri |
+| 12 | Pekerjaan Generasi Z: dunia digital | Enam contoh profesi digital |
+| 13 | Pekerjaan Generasi Z: dunia nyata | Enam contoh profesi lintas sektor |
+| 14 | Bekerja adalah jalan pengabdian | Mendidik, mencipta, melayani, memimpin |
+| 15 | Pilih benihmu. Bentuk masa depanmu | Tunas sebagai potensi diri |
+| 16 | Benih Syubbanul Wathon untuk Indonesia | Peta Indonesia & benih bertumbuh |
+| 17 | Melangkah lebih jauh bersama UIN Sunan Kalijaga | Promosi kampus umum & QR PMB |
 
-Bentuk adalah ilustrasi artistik, bukan simulasi astronomi/fisika berskala. Setiap perpindahan slide memakai morph posisi partikel selama sekitar 2,2 detik disertai sebaran singkat. Pergantian cepat tetap berawal dari posisi terakhir. Animasi terus berputar perlahan dan merespons mouse. Tidak ada mode autoplay slide.
+Good Character dibentuk pada tahun kedua masa pengabdian narasumber dalam konteks kesiswaan. Mars SMA Syubbanul Wathon adalah karya **siswa angkatan kedua**, dengan narasumber berperan sebagai **pembimbing**. Bangunan NEXORA adalah **metafora konseptual**, bukan gambar gedung SMA yang sesungguhnya.
 
-## Deck tambahan — SMA Syubbanul Wathon
+## Mengoperasikan presentasi
 
-Deck kedua tersedia pada rute `#/presentasi/syubbanul-wathon/1`. Deck Pendidikan Fisika tetap tersedia pada rute `#/presentasi/pendidikan-fisika/1`. Materi SMA Syubbanul Wathon berisi pengalaman pengabdian 2013–2019, Good Character sebagai pondasi, pekerjaan masa depan Generasi Z, serta transformasi bangunan menjadi benih untuk Indonesia. Perpindahan slide deck ini memakai arah vertikal dari bawah dengan GSAP, sementara latar dan bentuk 3D tetap dirender oleh Three.js.
+- Panah kanan/kiri atau Page Down/Page Up: maju/mundur satu slide.
+- Home/End: slide pertama/terakhir.
+- F: layar penuh; G: daftar slide; N: catatan pembicara.
+- Tombol **Animasi**: mengaktifkan/menonaktifkan animasi presentasi.
+- Pada slide NEXORA: seret model untuk memutar kamera; scroll di atas model untuk zoom.
+- Pada CV: pilih tab Profil, Pengalaman, Pengajaran, Publikasi; dapat diputar otomatis dalam satu slide.
+- Pada slide 16: animasi peta menyemai benih otomatis saat slide dibuka.
+- **Cetak PDF**: semua slide deck aktif disusun untuk dialog print browser; gunakan Landscape dan aktifkan grafik latar. PDF adalah representasi statis, bukan video animasi.
 
-Three.js memakai WebGL pada perangkat yang mendukung. Jika WebGL tidak tersedia, Canvas 2D memproyeksikan koordinat tiga dimensi yang sama, termasuk bentuk dan morph yang sama. Jadi semua sepuluh bentuk tetap tersedia pada mode cadangan. Jumlah partikel lebih sedikit di HP; loop berhenti saat tab tersembunyi. Tombol Animasi dan preferensi reduced motion menghentikan gerakan, tetapi bentuk statis tetap terlihat.
+Di browser yang tidak mendukung WebGL, NEXORA menampilkan ilustrasi cadangan dengan teks tetap terbaca. Untuk efek 3D asli, gunakan Chrome, Edge, atau browser modern dengan akselerasi grafis. Jika pengguna mengaktifkan preferensi sistem untuk mengurangi gerak, animasi tertentu dihentikan.
 
-## Kontrol
+## Struktur yang penting
 
-- ← / → atau Page Up / Page Down: slide sebelumnya/berikutnya.
-- Home / End: slide pertama/terakhir.
-- F: Full Screen; Esc: keluar atau tutup dialog.
-- G: daftar slide; N: catatan pembicara.
-- Tombol Animasi: hentikan/aktifkan gerakan.
-- Swipe horizontal pada area kosong materi: berpindah slide di HP.
-- Kartu Study Club: buka detail.
+| Lokasi | Fungsi |
+| --- | --- |
+| `src/syubbanul-deck.js` | Semua isi, urutan, dan catatan 17 slide |
+| `src/nexora/building.js` | Model geometri bangunan NEXORA asli |
+| `src/nexora/scene.js` | Kamera, WebGL, animasi perakitan, dan orbit |
+| `src/nexora/presenter.js` | Sinkronisasi model dengan slide |
+| `src/main.js` | Layout, navigasi, catatan, PDF, dan QR |
+| `src/style.css` | Desain sinematik dan responsif |
+| `public/cv/` | Slide CV independen |
+| `public/nusantara/` | Animasi Nusantara Bertumbuh independen |
+| `public/models/` | Salinan model `.glb` NEXORA untuk pemakaian lanjutan |
+| `public/assets/campus.jpg` | Foto ilustrasi akademik untuk Sospro |
 
-Full Screen mengikuti dukungan Fullscreen API browser. Jika tidak didukung/ditolak, tampil penjelasan; presentasi tetap dapat digunakan. Di HP, slide panjang dapat digulir.
+Rute **Pendidikan Fisika** lama tetap tersedia pada `#/presentasi/pendidikan-fisika/1`; Sospro pada slide 17 sendiri fokus pada **UIN Sunan Kalijaga secara umum**.
 
-## Cetak PDF
+## Catatan sumber dan batasan
 
-Klik **Cetak PDF** di menu atas. Semua 10 slide deck aktif disiapkan, tanpa mengubah URL atau slide aktif. Pada beranda, deck pertama dipilih. Setelah foto dan QR siap, dialog cetak browser dibuka.
+- Posisi kedua nasional THE WUR 2027 mengikuti pengumuman resmi UIN Sunan Kalijaga; situs THE mencantumkan UIN Sunan Kalijaga pada kelompok 801–1.000 dunia. Klaim dibatasi pada sistem/tahun tersebut.
+- Slide pekerjaan merupakan contoh eksplorasi masa depan, bukan jaminan keamanan atau ketersediaan pekerjaan. Rujukan umum: WEF *Future of Jobs Report 2025* dan kajian ILO tentang transformasi pekerjaan oleh AI.
+- Foto CV memakai URL gambar dari materi CV awal; bila gambar eksternal tidak dapat dimuat, tersedia placeholder inisial ACM. Agar 100% offline, ganti URL itu dengan aset foto yang disimpan sendiri di `public/cv/`.
+- File audio/lirik resmi Mars tidak disertakan; presentasi menyampaikan kisah warisannya tanpa memutar rekaman atau mengarang lirik.
+- Visual Nusantara adalah karya animasi konseptual, bukan data titik tanam nyata.
+- QR menggunakan tujuan `https://admisi.uin-suka.ac.id/`; syarat, jadwal, dan jalur masuk mengikuti situs resmi terbaru.
+- PPT rekap PMB 2026 yang diberikan berisi 54 **pendaftaran** gabungan empat jalur untuk SMA Syubbanul Wathon, tidak bisa diperlakukan sebagai 54 peserta unik/mahasiswa diterima; data ini disimpan sebagai catatan pembicara Sospro, bukan angka utama promosi.
 
-Pilih **Simpan sebagai PDF / Save as PDF**, A4 mendatar (Landscape), skala 100% atau Default. Matikan header/footer browser dan aktifkan Background graphics agar warna tercetak. Satu slide dirancang per halaman. Detail kartu Study Club ikut dicetak; kontrol dan animasi partikel disembunyikan. PDF merupakan halaman statis. Tidak ada upload dokumen ke layanan pihak ketiga.
+## Status paket
 
-## Mengubah atau menambah materi
-
-- `src/content.js`: `links`, `fields`, dan `decks`.
-- `decks` adalah array presentasi. Tambah objek dengan `id` unik huruf kecil/angka/tanda hubung, `label`, `category`, `title`, `subtitle`, `description`, dan `slides`.
-- Slide berisi `title`, `eyebrow`, `intro`, `layout`, `shape` (0–9), `notes`, `source` (kunci pada links), dan opsional `items`/`dark`.
-- Layout: hero, campus, applications, profile, journey, admission, fields, experience, closing.
-- `fields` dipakai oleh layout fields, saat ini berisi empat Study Club. Untuk deck baru dengan kartu berbeda, perlu memisahkan data kartu per deck di renderer.
-- `src/shapes.js`: nama dan geometri partikel; ubah bentuk di sini.
-- `src/particles.js`: renderer, morph, pengaturan performa.
-- `src/main.js`: antarmuka, navigasi, dialog, PDF.
-- `src/style.css`: warna, responsivitas, dan tata letak cetak.
-- `public/assets/campus.jpg`: foto ilustrasi kegiatan akademik dari situs universitas. Bukan klaim foto khusus Pendidikan Fisika.
-
-Tautan utama: `#/presentasi/pendidikan-fisika/1`. Rute lama `#/presentasi/fisika/1` tetap membuka materi Pendidikan Fisika sebagai kompatibilitas. QR otomatis mengikuti `links.admission`.
-
-Setelah perubahan: jalankan tes/build, lalu push ke GitHub. Proyek Vercel yang terhubung akan membangun ulang. Seluruh konten website statis bersifat publik; jangan menyimpan rahasia dalam source.
-
-## Isi paket
-
-Source, package-lock, konfigurasi Vercel, hasil build, tes, sumber materi, dan catatan QA. Tidak menyertakan node_modules karena dapat dibuat ulang dengan npm ci. ZIP standar tanpa enkripsi/ZIP64, diuji CRC dan ekstraksi ulang.
-
-
-## Revisi latar 2.1
-
-Partikel kini menjadi latar seluruh slide tanpa nama bentuk atau area pajangan khusus. Bentuk tetap berubah mengikuti slide. Latar diperbesar dan digeser ke kanan, memakai transparansi rendah dan mask gradasi untuk melindungi area teks. Rotasi diperlambat dan morph menjadi sekitar 2,2 detik. Di HP latar lebih samar. Saat gerakan dihentikan, bentuk statis tetap tampil sebagai latar. Full Screen dan Cetak PDF tetap tersedia; partikel tidak ikut dicetak.
-
-
-## Revisi 2.2 — Visibilitas partikel
-
-Kontras dan ukuran titik dinaikkan setelah versi sebelumnya terlalu samar. Opacity lapisan desktop: gelap 68%, terang 55%, beranda 50%, masih dikalikan alpha tiap titik dan mask pelindung teks. HP: gelap 55%, terang/beranda 45%. Nama bentuk tetap tersembunyi. Jika memasang ulang di Vercel, unggah seluruh source lalu lakukan deployment baru; gunakan refresh paksa untuk memastikan versi baru dimuat.
+Source, aset statis, model NEXORA, file proyek independen, `package-lock.json`, tes, dan `dist/` disertakan; `node_modules/` tidak disertakan. Build serta tes otomatis bisa dijalankan sebelum upload. Verifikasi visual WebGL pada browser pengguna tetap direkomendasikan setelah deploy.

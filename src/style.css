@@ -1977,3 +1977,296 @@ body.deck-syubbanul-wathon.scene-finale #architecture-fallback .architecture-ind
     display: none!important;
   }
 }
+
+/* ================================================================
+   SMA SYUBBANUL WATHON • FINAL CINEMATIC PRESENTATION (17 SLIDES)
+   NEXORA is the original interactive 3D model in a dedicated layer.
+   ================================================================ */
+body.deck-syubbanul-wathon {
+  --green: #a8dff5; --sage: #6dc7e9; --gold: #d9af69; --muted: #a7bdd2;
+  color: #f2f7ff; background: #07152b; overflow-x: hidden;
+}
+body.deck-syubbanul-wathon:before {
+  background: radial-gradient(ellipse at 82% 43%, #134265 0%, #0b2440 35%, transparent 68%),
+              radial-gradient(ellipse at 13% 82%, #142c49 0%, transparent 60%), #07152b;
+}
+body.deck-syubbanul-wathon #particles,
+body.deck-syubbanul-wathon #architecture-fallback { display: none!important; }
+body.deck-syubbanul-wathon .header {
+  position: relative; z-index: 8; height: 76px;
+  border-color: rgba(163,211,242,.18); margin: 0 3.6vw;
+}
+body.deck-syubbanul-wathon .brand strong { font-weight: 750; letter-spacing:-.03em; }
+body.deck-syubbanul-wathon .brand small { color:#8cabca; }
+body.deck-syubbanul-wathon .brand-mark { color:#7fd4ef; }
+body.deck-syubbanul-wathon .header button { color:#e1f0fa; }
+body.deck-syubbanul-wathon .header .all-link { color:#aec9df; }
+body.deck-syubbanul-wathon .slide {
+  padding: 30px 4.4vw 8px; min-height: calc(100svh - 154px);
+  max-width: 1800px; animation: sySlideIn .65s cubic-bezier(.22,.85,.28,1) both;
+}
+body.deck-syubbanul-wathon .slide-heading { z-index:3; }
+body.deck-syubbanul-wathon .slide-heading h1 {
+  font-size: clamp(2.5rem,4.4vw,4.65rem); letter-spacing:-.054em;
+  line-height:1.09; max-width:1060px; text-wrap:balance;
+  text-shadow:0 12px 40px rgba(0,0,0,.18); margin:15px 0 13px;
+}
+body.deck-syubbanul-wathon .slide-heading .eyebrow {
+  font-size:10px; letter-spacing:.21em; font-weight:700; color:#e2b66f;
+}
+body.deck-syubbanul-wathon .intro {
+  max-width:940px; font-size:clamp(1rem,1.22vw,1.15rem);
+  color:#afc9dd; line-height:1.6; margin-bottom:20px;
+}
+body.deck-syubbanul-wathon .source-row { color:#b0c2d2; opacity:.72; margin-top:12px; }
+body.deck-syubbanul-wathon .controls {
+  min-height:72px; margin:0 4.4vw; z-index:8; position:relative;
+  border-top-color:rgba(159,194,220,.19);
+}
+body.deck-syubbanul-wathon .controls button {
+  border-color:rgba(176,212,241,.28); color:#e9f3fc;
+  background:rgba(28,60,89,.32);
+}
+body.deck-syubbanul-wathon .progress { background:#25405b; }
+body.deck-syubbanul-wathon .progress span { background:linear-gradient(90deg,#52b8ef,#d8b778); }
+
+/* The original NEXORA source creates the canvas in this element. */
+#nexora-layer {
+  display:none; position:fixed; inset:90px 1vw 84px 41%;
+  z-index:3; overflow:hidden; border-radius:22px;
+  border:1px solid rgba(121,192,223,.14);
+  background:radial-gradient(circle at 50% 44%,#1b3b55 0%,#0a2038 70%);
+  box-shadow:0 28px 110px rgba(0,0,0,.25);
+}
+#nexora-layer.show { display:block; }
+#nexora-layer canvas { width:100%;height:100%;display:block; cursor:grab; }
+#nexora-layer canvas:active { cursor:grabbing; }
+.nexora-webgl-fallback {
+  min-height:100%; padding:30px; display:flex; flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;gap:12px;
+  color:#d8eaf5;background:radial-gradient(circle,#234463,#0c2239 70%);
+}
+.nexora-webgl-fallback svg { width:100%;max-width:500px; }
+.nexora-webgl-fallback strong { font-size:1.15rem; }
+.nexora-webgl-fallback small { opacity:.74;max-width:380px; }
+body.deck-syubbanul-wathon .slide-nexora { pointer-events:none; }
+body.deck-syubbanul-wathon .slide-nexora .slide-heading { width:39%; max-width:700px; }
+body.deck-syubbanul-wathon .slide-nexora .slide-heading h1 {
+  font-size:clamp(2.4rem,3.65vw,4.15rem); max-width:640px;
+}
+body.deck-syubbanul-wathon .slide-nexora .slide-heading .intro { max-width:560px; }
+.nexora-stage-copy { width:37%;max-width:560px;position:relative;z-index:3; }
+.nexora-stage-meta {
+  display:flex;align-items:center;gap:10px;color:#82d0f0;
+  letter-spacing:.17em;font-size:10px;font-weight:800;margin:20px 0 15px;
+}
+.live-marker { width:8px;height:8px;display:inline-block;border-radius:50%;background:#60d9d7;box-shadow:0 0 16px #60d9d7; }
+.nexora-value-list { display:flex;flex-direction:column;gap:9px; }
+.nexora-value {
+  display:flex;gap:15px;align-items:flex-start;padding:11px 14px;
+  border:1px solid rgba(160,207,239,.17);border-radius:13px;
+  background:linear-gradient(110deg,rgba(22,60,91,.62),rgba(12,41,71,.24));
+  backdrop-filter:blur(9px);animation:syCardIn .75s both;animation-delay:calc(var(--order) * .13s);
+}
+.nexora-value > span {color:#e2b46a;letter-spacing:.1em;font-size:12px;font-weight:800;padding-top:3px;}
+.nexora-value strong {font-size:13px;letter-spacing:.015em;}
+.nexora-value p {margin:4px 0 0;font-size:11.5px;line-height:1.5;color:#abc8db;}
+.nexora-hint {margin-top:15px;color:#7ca4bf;font-size:10px;letter-spacing:.08em;}
+body.deck-syubbanul-wathon .slide-nexora .source-row { display:none; }
+
+/* Embedded Curriculum Vitae stays a single genuine interactive slide. */
+body.deck-syubbanul-wathon .slide-cv {padding:0 3.2vw;}
+body.deck-syubbanul-wathon .slide-cv .slide-heading,
+body.deck-syubbanul-wathon .slide-cv .source-row {display:none;}
+.cv-embed {height:calc(100svh - 164px); min-height:510px;overflow:hidden;border-radius:17px;border:1px solid #315070;}
+.cv-embed iframe {display:block;width:100%;height:100%;border:none;background:#07152b;}
+.cv-print {display:none;}
+
+/* Reflective timeline with three chronology milestones. */
+.sy-timeline {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:6vh;}
+.sy-time-step {position:relative;animation:syCardIn .75s both;animation-delay:calc(var(--order)*.18s);}
+.sy-year {display:inline-block;font-size:clamp(1.45rem,2.35vw,2.5rem);font-weight:800;letter-spacing:-.04em;color:#e3c58a;}
+.sy-time-line {position:relative;height:34px;margin:10px 0 20px;border-top:2px solid #4e88af;}
+.sy-time-line:before {content:"";position:absolute;left:0;top:-8px;width:12px;height:12px;border:2px solid #e6cc90;border-radius:50%;background:#0c3454;box-shadow:0 0 0 5px #134261;}
+.sy-time-body {background:linear-gradient(155deg,rgba(36,74,108,.86),rgba(12,38,70,.8));border:1px solid #3e6585;border-radius:17px;padding:23px;min-height:238px;}
+.sy-time-body h2 {font-size:clamp(1.3rem,1.8vw,1.9rem);margin-bottom:11px;}
+.sy-time-body p {color:#bad0df;font-size:14px;line-height:1.66;}
+.sy-time-body small {display:block;border-top:1px solid #45647e;padding-top:10px;color:#e4c589;font-size:10px;line-height:1.6;}
+
+/* AI challenges, manifesto and career cards. */
+.sy-orbit {position:absolute;right:4vw;top:18%;width:34vw;height:34vw;max-width:480px;max-height:480px;opacity:.35;pointer-events:none;}
+.sy-orbit-ring {position:absolute;inset:10%;border-radius:50%;border:1px solid #5bbbe4;animation:syOrbit 22s linear infinite;}
+.sy-orbit-ring:before {content:"";position:absolute;left:3%;top:50%;width:14px;height:14px;background:#8cdbef;box-shadow:0 0 25px #75d9ef;border-radius:50%;}
+.sy-orbit-ring.ring-b {inset:20%;border-color:#e7be7c;transform:rotate(60deg);animation-direction:reverse;}
+.sy-orbit-core {position:absolute;inset:32%;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle,#285778,#0d2c48);font-size:4rem;color:#dbedfa;font-weight:800;box-shadow:0 0 80px #3d96cb88;}
+.sy-insight-grid {position:relative;z-index:2;max-width:1100px;display:grid;grid-template-columns:repeat(2,1fr);gap:17px;margin-top:20px;}
+.sy-insight,.sy-career-grid article {border:1px solid rgba(137,197,231,.25);border-radius:17px;padding:24px;background:linear-gradient(145deg,rgba(29,65,95,.9),rgba(8,34,62,.78));box-shadow:0 16px 40px #050f1c33;animation:syCardIn .7s both;animation-delay:calc(var(--order)*.11s);}
+.sy-insight-symbol {height:34px;color:#e6bf7a;font-size:23px;font-weight:800;}
+.sy-insight h2 {font-size:20px;margin:8px 0;}
+.sy-insight p,.sy-career-grid p {color:#b1c9dc;font-size:13px;line-height:1.64;margin:0;}
+.sy-manifesto {max-width:1170px;position:relative;z-index:2;}
+.sy-ai-graphic {position:absolute;right:5%;top:-74px;width:240px;height:240px;display:grid;place-items:center;opacity:.66;}
+.sy-ai-graphic span {font-size:6rem;font-weight:900;color:#75c9f1;text-shadow:0 0 60px #58a9e0;}
+.sy-ai-ring {position:absolute;inset:12%;border:1px solid #68c4ea;border-radius:50%;box-shadow:inset 0 0 40px #57c4e933,0 0 40px #57c4e944;animation:syOrbit 19s linear infinite;}
+.sy-manifesto blockquote {font-size:clamp(1.28rem,2vw,2.25rem);line-height:1.5;max-width:850px;margin:30px 0;padding:0 28px;border-left:3px solid #e2b769;color:#d8e9f4;}
+.sy-manifesto-grid {display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:25px;}
+.sy-manifesto-grid article {padding:20px 17px;border:1px solid #39698a;border-radius:15px;background:#153b5d99;display:flex;flex-direction:column;gap:11px;animation:syCardIn .65s both;animation-delay:calc(var(--order)*.12s);}
+.sy-manifesto-grid article span {color:#e8bd76;font-size:11px;}
+.sy-manifesto-grid article strong {letter-spacing:.08em;font-size:14px;}
+.sy-manifesto-grid article small {font-size:12px;color:#bad0e0;line-height:1.5;}
+.sy-career-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:15px;max-width:1240px;}
+.sy-career-grid article {padding:20px;min-height:150px;}
+.sy-career-symbol {display:inline-grid;place-items:center;min-width:43px;height:39px;border-radius:10px;background:#315b7b;color:#efcc91;font-family:ui-monospace,monospace;font-size:19px;font-weight:800;margin-bottom:10px;}
+.sy-career-grid h2 {font-size:19px;margin:0 0 6px;}
+.sy-subnote {font-size:11px;color:#88aec6;margin-top:18px;}
+.sy-service-grid {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:35px;}
+.sy-service-grid article {min-height:250px;padding:25px 19px;border:1px solid #426f91;border-radius:18px;background:linear-gradient(155deg,#204b73,#0a294b);animation:syCardIn .75s both;animation-delay:calc(var(--order)*.13s);}
+.sy-service-index {font-size:42px;font-weight:800;color:#e3b974;opacity:.85;}
+.sy-service-grid h2 {font-size:22px;letter-spacing:.045em;margin:24px 0 12px;}
+.sy-service-grid p {color:#b1cbdc;font-size:13px;}
+.sy-service-statement {font-size:clamp(1.1rem,2.1vw,2rem);font-weight:750;margin-top:25px;}
+.sy-service-statement em {color:#d9b66d;}
+
+/* The personal seed grows before the geographic Nusantara finale. */
+.sy-seed-bridge {display:grid;grid-template-columns:40% 1fr;align-items:center;gap:6%;margin-top:10px;}
+.sy-seed-visual {min-height:390px;position:relative;filter:drop-shadow(0 20px 50px #040e22);}
+.seedsoil {position:absolute;left:10%;right:8%;bottom:55px;height:70px;border-radius:50%;background:radial-gradient(ellipse,#866c49,#3d5140 53%,transparent 73%);}
+.seedstem {position:absolute;left:50%;bottom:92px;width:10px;height:178px;border-radius:20px;background:linear-gradient(90deg,#316b45,#a1e4a0);transform-origin:bottom;animation:syGrow 2.5s both;}
+.seedleaf {position:absolute;bottom:219px;width:94px;height:50px;background:linear-gradient(110deg,#65be83,#c4f4b1);border-radius:100% 0 100% 10%;animation:syLeaf 2.6s .7s both;}
+.seedleaf.leaf-l {left:calc(50% - 93px);transform-origin:bottom right;transform:rotate(26deg);}
+.seedleaf.leaf-r {left:calc(50% + 4px);transform-origin:bottom left;transform:rotate(-35deg) scaleX(-1);}
+.seedglow {position:absolute;inset:24% 4% 14%;border-radius:50%;background:radial-gradient(circle,#66d99a26,transparent 65%);animation:syPulse 5s ease-in-out infinite;}
+.sy-seed-values {display:flex;flex-direction:column;gap:14px;}
+.sy-seed-values article {border-left:2px solid #6bc5a0;padding:10px 20px;background:#173d5644;animation:syCardIn .65s both;animation-delay:calc(var(--order)*.13s);}
+.sy-seed-values article span {font-size:11px;color:#dfc18b;letter-spacing:.12em;}
+.sy-seed-values h2 {font-size:22px;margin:5px 0;}.sy-seed-values p {font-size:13px;color:#b3cbdc;margin:0;}
+
+/* Real Indonesian geography + animated seeds is the provided project. */
+body.deck-syubbanul-wathon .slide-nusantara {overflow:hidden;}
+body.deck-syubbanul-wathon .slide-nusantara .slide-heading {position:relative;z-index:5;max-width:870px;pointer-events:none;}
+body.deck-syubbanul-wathon .slide-nusantara .slide-heading h1 {font-size:clamp(2rem,3vw,3.2rem);}
+body.deck-syubbanul-wathon .slide-nusantara .intro {font-size:14px;max-width:670px;}
+.nusantara-stage {position:absolute;inset:0;overflow:hidden;background:#07182b;}
+.nusantara-stage iframe {position:absolute;width:100%;height:100%;border:0;inset:0;pointer-events:none;}
+.nusantara-stage:after {content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#07152be8 0%,transparent 30%,transparent 67%,#07152b8a 100%);}
+.nusantara-message {position:absolute;z-index:2;left:4.5vw;bottom:26px;display:flex;flex-direction:column;text-shadow:0 4px 20px #030912;font-size:clamp(1.2rem,2vw,2rem);}
+.nusantara-message strong {color:#eac887;}.nusantara-message span {color:#edf8fa;}
+body.deck-syubbanul-wathon .slide-nusantara .source-row {display:none;}
+
+/* The final call-to-action promotes UIN Sunan Kalijaga as a whole. */
+body.deck-syubbanul-wathon .slide-sospro .slide-heading h1 {font-size:clamp(2.25rem,3.6vw,3.8rem);max-width:1200px;}
+.sospro-layout {display:grid;grid-template-columns:42% 1fr;gap:24px;max-width:1440px;}
+.sospro-photo {margin:0;position:relative;min-height:350px;border-radius:17px;overflow:hidden;border:1px solid #365d79;background:#294764;}
+.sospro-photo img {width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.9) contrast(1.04);}
+.sospro-photo:after {content:"";position:absolute;inset:0;background:linear-gradient(0deg,#0a2034d0,transparent 54%);}
+.sospro-photo figcaption {position:absolute;z-index:2;bottom:18px;left:20px;font-weight:800;font-size:11px;letter-spacing:.14em;}
+.sospro-detail {display:flex;flex-direction:column;gap:14px;}
+.sospro-cards {display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.sospro-cards article {background:#193b5b;border:1px solid #416587;border-radius:13px;padding:16px 12px;animation:syCardIn .7s both;animation-delay:calc(var(--order)*.12s);}
+.sospro-cards article span {color:#e9c488;font-size:11px;}
+.sospro-cards h2 {font-size:16px;margin:10px 0 7px;}
+.sospro-cards p {color:#b2cbda;font-size:11px;line-height:1.5;margin:0;}
+.sospro-cta {display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;background:linear-gradient(110deg,#19446d,#0b2b4d);border:1px solid #37668b;border-radius:14px;padding:16px;}
+.sospro-cta strong {font-size:20px;}.sospro-cta p {font-size:11.5px;color:#bdd1e0;margin:5px 0 12px;}
+.sospro-links {display:flex;gap:9px;flex-wrap:wrap;}.sospro-links .button {font-size:11px;padding:11px 13px;}
+.sospro-qr {display:flex;flex-direction:column;align-items:center;gap:4px;background:#fff;color:#0c2842;padding:7px;border-radius:10px;}
+.sospro-qr img {width:100px;height:100px;object-fit:contain;}.sospro-qr small {font-size:8px;font-weight:800;letter-spacing:.07em;}
+
+@keyframes sySlideIn {from{opacity:.12;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+@keyframes syCardIn {from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes syOrbit {to{transform:rotate(360deg)}}
+@keyframes syGrow {from{transform:scaleY(.05);opacity:.2}to{transform:scaleY(1);opacity:1}}
+@keyframes syLeaf {from{opacity:0;scale:.1}to{opacity:1;scale:1}}
+@keyframes syPulse {50%{opacity:.4;transform:scale(1.08)}}
+
+@media(max-width:1100px) {
+  #nexora-layer {inset:100px 0 88px 46%;}
+  body.deck-syubbanul-wathon .slide-nexora .slide-heading {width:45%;}
+  body.deck-syubbanul-wathon .slide-nexora .slide-heading h1 {font-size:clamp(2rem,3.4vw,3.3rem);}
+  .nexora-stage-copy {width:44%;}
+  .nexora-value {padding:9px 11px;}
+  .sospro-layout {grid-template-columns:36% 1fr;}
+  .sospro-photo {min-height:310px;}
+  .sospro-cards {gap:7px;}.sospro-cards article {padding:11px;}
+}
+@media(max-width:760px) {
+  body.deck-syubbanul-wathon .header {height:64px;}
+  body.deck-syubbanul-wathon .slide {padding:20px 6vw;min-height:calc(100svh - 134px);}
+  body.deck-syubbanul-wathon .slide-heading h1 {font-size:clamp(2rem,7vw,3.2rem);}
+  body.deck-syubbanul-wathon .slide-heading .eyebrow {font-size:9px;letter-spacing:.1em;}
+  body.deck-syubbanul-wathon .intro {font-size:13px;line-height:1.48;}
+  #nexora-layer {inset:300px 2vw 85px 2vw;border-radius:13px;}
+  body.deck-syubbanul-wathon .slide-nexora .slide-heading {width:100%;max-width:100%;}
+  body.deck-syubbanul-wathon .slide-nexora .slide-heading h1 {font-size:clamp(2rem,6.2vw,3rem);}
+  body.deck-syubbanul-wathon .slide-nexora .slide-heading .intro {max-width:100%;}
+  .nexora-stage-copy {width:100%;max-width:none;}
+  .nexora-stage-meta {margin:4px 0 8px;}
+  .nexora-value-list {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;}
+  .nexora-value {padding:6px;gap:7px;background:#12334b9f;}
+  .nexora-value > span {font-size:9px;}.nexora-value strong {font-size:10px;}
+  .nexora-value p {display:none;}.nexora-hint {display:none;}
+  .cv-embed {min-height:450px;height:calc(100svh - 134px);}
+  .sy-timeline {grid-template-columns:1fr;gap:13px;margin:8px 0;}
+  .sy-time-step {display:grid;grid-template-columns:104px 1fr;gap:12px;}
+  .sy-year {font-size:1.1rem;}.sy-time-line {display:none;}
+  .sy-time-body {min-height:0;padding:12px;}.sy-time-body h2 {font-size:16px;margin:0 0 5px;}
+  .sy-time-body p {font-size:11px;margin:0;}.sy-time-body small {font-size:9px;margin-top:5px;}
+  .sy-orbit {width:56vw;height:56vw;right:1%;top:35%;opacity:.16;}
+  .sy-insight-grid {grid-template-columns:1fr 1fr;gap:9px;}
+  .sy-insight {padding:13px;}.sy-insight h2 {font-size:14px;}.sy-insight p {font-size:11px;}
+  .sy-manifesto blockquote {font-size:15px;margin:12px 0;padding:0 12px;}
+  .sy-ai-graphic {width:110px;height:110px;right:0;top:10px;opacity:.3;}.sy-ai-graphic span {font-size:3rem;}
+  .sy-manifesto-grid {grid-template-columns:1fr 1fr;gap:7px;margin-top:10px;}
+  .sy-manifesto-grid article {padding:10px;gap:4px;}.sy-manifesto-grid article small {font-size:10px;}
+  .sy-career-grid {grid-template-columns:repeat(2,1fr);gap:7px;}
+  .sy-career-grid article {min-height:110px;padding:10px;}.sy-career-grid h2 {font-size:14px;}
+  .sy-career-grid p {font-size:10px;}.sy-career-symbol {height:27px;min-width:30px;font-size:14px;margin-bottom:3px;}
+  .sy-service-grid {grid-template-columns:repeat(2,1fr);gap:9px;margin-top:10px;}
+  .sy-service-grid article {min-height:135px;padding:12px;}.sy-service-index {font-size:24px;}
+  .sy-service-grid h2 {font-size:15px;margin:12px 0 5px;}.sy-service-grid p {font-size:11px;}
+  .sy-service-statement {font-size:16px;margin-top:14px;}
+  .sy-seed-bridge {grid-template-columns:1fr;gap:4px;}.sy-seed-visual {min-height:205px;}
+  .seedsoil {bottom:20px;}.seedstem {bottom:55px;height:120px;}.seedleaf {bottom:138px;}
+  .sy-seed-values {gap:6px;}.sy-seed-values article {padding:6px 11px;}.sy-seed-values h2 {font-size:15px;}
+  .sy-seed-values p {font-size:11px;}
+  .sospro-layout {grid-template-columns:1fr;gap:10px;}.sospro-photo {min-height:130px;height:160px;}
+  .sospro-cards {grid-template-columns:repeat(3,1fr);}.sospro-cards h2 {font-size:13px;}
+  .sospro-cards p {font-size:10px;}.sospro-cta {padding:10px;}
+  .sospro-cta strong {font-size:14px;}.sospro-qr img {width:80px;height:80px;}
+  .nusantara-message {font-size:15px;bottom:20px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  body.deck-syubbanul-wathon .slide,
+  .sy-time-step,.nexora-value,.sy-insight,.sy-career-grid article,
+  .sy-service-grid article,.sy-manifesto-grid article,.sy-seed-values article,
+  .sospro-cards article,.sy-orbit-ring,.sy-ai-ring,.seedstem,.seedleaf,.seedglow {
+    animation:none!important;transition:none!important;
+  }
+}
+@media print {
+  #nexora-layer {display:none!important;}
+  .print-slide .cv-embed {height:auto;min-height:0;border:0;}
+  .print-slide .cv-print {display:block;color:#1d3850!important;font-size:16px;}
+  .print-slide .nexora-stage-copy {width:100%;max-width:none;color:#1d3850;}
+  .print-slide .nexora-value {background:#edf4fa;color:#1d3850;border:1px solid #cadbe7;}
+  .print-slide .nexora-value p {display:block;color:#42596c;}
+  .print-slide .nexora-hint {display:none;}
+  .print-slide .sy-timeline {margin:20px 0;}
+  .print-slide .sy-time-body {background:#e8f1f8;color:#1d3850;border-color:#b1c7d7;}
+  .print-slide .sy-time-body p {color:#3a5266;}
+  .print-slide .sy-insight-grid,.print-slide .sy-career-grid {gap:12px;}
+  .print-slide .sy-insight,.print-slide .sy-career-grid article,
+  .print-slide .sy-service-grid article,.print-slide .sy-manifesto-grid article,
+  .print-slide .sospro-cards article {background:#e9f1f7;color:#1a354a;border-color:#b7cbda;}
+  .print-slide .sy-insight p,.print-slide .sy-career-grid p,
+  .print-slide .sy-service-grid p,.print-slide .sy-manifesto-grid small {color:#3d5568;}
+  .print-slide .sy-orbit,.print-slide .sy-ai-graphic {display:none;}
+  .print-slide .sy-manifesto blockquote {color:#1c3e59;}
+  .print-slide .sospro-layout {grid-template-columns:36% 1fr;}
+  .print-slide .sospro-photo {min-height:260px;}
+  .print-slide .sospro-cta {background:#eaf2f9;color:#213e55;}
+  .print-slide .sospro-cta p {color:#38566a;}
+  .print-slide .nusantara-stage {position:relative;min-height:240px;}
+  .print-slide .nusantara-message {color:#1a394f;text-shadow:none;}
+  .print-slide .seedstem,.print-slide .seedleaf {animation:none;}
+}

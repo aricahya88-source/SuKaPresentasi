@@ -8,6 +8,7 @@ import {
   parseRoute as zt,
 } from "./content.js";
 import { createParticles as xt } from "./particles.js";
+import { createNexoraPresenter } from './nexora/presenter.js';
 const se = document.querySelector("#app"),
   Wt = document.querySelector("#status"),
   R = (e) =>
@@ -25,6 +26,7 @@ const se = document.querySelector("#app"),
 let B = null,
   j = null,
   q = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+const nexoraPresenter = createNexoraPresenter(document.querySelector('#nexora-layer'));
 try {
   const e = localStorage.getItem("suka-motion");
   e !== null && (q = e === "on");
@@ -37,6 +39,7 @@ function yt(e) {
   return `<header class="header"><a class="brand" href="#/">${Qt}<span><strong>${e ? R(B.deck.label || B.deck.title) : "SUKA Presentasi"}</strong><small>UIN Sunan Kalijaga</small></span></a><nav aria-label="Menu utama">${e ? '<a class="all-link" href="#/">Semua materi</a>' : '<span class="nav-label">RUANG GAGASAN & INSPIRASI</span>'}<button data-action="motion" aria-pressed="${q}" title="Aktifkan atau hentikan animasi">${q ? "◉" : "○"} <span>Animasi ${q ? "aktif" : "nonaktif"}</span></button><button data-action="print" class="print-button" title="Cetak semua slide / simpan sebagai PDF">▤ <span>Cetak PDF</span></button><button data-action="fullscreen" class="full" title="Layar penuh (F)" aria-label="Aktifkan layar penuh">⛶ <span>Full Screen</span></button></nav></header>`;
 }
 function Xt() {
+  nexoraPresenter.hide();
   ((document.body.className = "home" + (q ? "" : " still")),
     (se.innerHTML =
       yt(!1) +
@@ -48,6 +51,26 @@ function le(e) {
 }
 function Zt(e) {
   switch (e.layout) {
+    case 'cv':
+      return `<div class="cv-embed"><iframe src="/cv/index.html" title="Curriculum Vitae interaktif Ari Cahya Mawardi" loading="eager" allow="fullscreen"></iframe><div class="cv-print"><h2>Ari Cahya Mawardi</h2><p>Dosen Media Pembelajaran • UIN Sunan Kalijaga Yogyakarta</p><p>Profil • Pengalaman • Pengajaran • Penelitian dan publikasi</p></div></div>`;
+    case 'timeline':
+      return `<div class="sy-timeline">${e.timeline.map((t, i) => `<article class="sy-time-step" style="--order:${i}"><span class="sy-year">${R(t.year)}</span><div class="sy-time-line"><span></span></div><div class="sy-time-body"><h2>${R(t.title)}</h2><p>${R(t.detail)}</p>${i === 2 ? '<small>UIN Sunan Kalijaga • Posisi kedua nasional menurut rilis kampus untuk THE WUR 2027</small>' : ''}</div></article>`).join('')}</div>`;
+    case 'nexora':
+      return `<div class="nexora-stage-copy"><div class="nexora-stage-meta"><span class="live-marker"></span>${R(e.legacy || (e.scene === 'opening' ? 'THE JOURNEY BEGINS' : 'NEXORA • ARCHITECTURAL METAPHOR'))}</div><div class="nexora-value-list">${(e.items || []).map((item, i) => `<article class="nexora-value" style="--order:${i}"><span>${String(i + 1).padStart(2, '0')}</span><div><strong>${R(item[0])}</strong><p>${R(item[1])}</p></div></article>`).join('')}</div><div class="nexora-hint">↻ Seret model untuk memutar • Gulir untuk memperbesar</div></div>`;
+    case 'insights':
+      return `<div class="sy-orbit" aria-hidden="true"><div class="sy-orbit-ring ring-a"></div><div class="sy-orbit-ring ring-b"></div><div class="sy-orbit-core">AI</div></div><div class="sy-insight-grid">${e.items.map((item, i) => `<article class="sy-insight" style="--order:${i}"><div class="sy-insight-symbol">${R(item[0])}</div><h2>${R(item[1])}</h2><p>${R(item[2])}</p></article>`).join('')}</div>`;
+    case 'manifesto':
+      return `<div class="sy-manifesto"><div class="sy-ai-graphic" aria-hidden="true"><div class="sy-ai-ring"></div><span>AI</span></div><blockquote>${R(e.quote)}</blockquote><div class="sy-manifesto-grid">${e.items.map((item, i) => `<article style="--order:${i}"><span>0${i + 1}</span><strong>${R(item[0])}</strong><small>${R(item[1])}</small></article>`).join('')}</div></div>`;
+    case 'careers':
+      return `<div class="sy-career-grid">${e.items.map((item, i) => `<article style="--order:${i}"><span class="sy-career-symbol">${R(item[0])}</span><h2>${R(item[1])}</h2><p>${R(item[2])}</p></article>`).join('')}</div><p class="sy-subnote">Setiap profesi membutuhkan jalur belajar, kemampuan, dan tanggung jawab yang berbeda.</p>`;
+    case 'service':
+      return `<div class="sy-service-grid">${e.items.map((item, i) => `<article style="--order:${i}"><span class="sy-service-index">0${i + 1}</span><h2>${R(item[0])}</h2><p>${R(item[1])}</p></article>`).join('')}</div><div class="sy-service-statement">Apa pun profesinya, <em>pekerjaan dapat menjadi jalan pengabdian.</em></div>`;
+    case 'seed-bridge':
+      return `<div class="sy-seed-bridge"><div class="sy-seed-visual" aria-hidden="true"><div class="seedsoil"></div><div class="seedstem"></div><div class="seedleaf leaf-l"></div><div class="seedleaf leaf-r"></div><div class="seedglow"></div></div><div class="sy-seed-values">${e.items.map((item, i) => `<article style="--order:${i}"><span>0${i + 1}</span><h2>${R(item[0])}</h2><p>${R(item[1])}</p></article>`).join('')}</div></div>`;
+    case 'nusantara':
+      return `<div class="nusantara-stage"><iframe src="/nusantara/index.html?embed=1&loop=0" title="Animasi peta Indonesia dengan penyemaian benih dan pertumbuhan tanaman" tabindex="-1" loading="eager"></iframe><div class="nusantara-message"><strong>Dari Syubbanul Wathon,</strong><span>benih kebaikan tumbuh untuk Indonesia.</span></div></div>`;
+    case 'sospro':
+      return `<div class="sospro-layout"><figure class="sospro-photo"><img src="/assets/campus.jpg" alt="Ilustrasi aktivitas akademik UIN Sunan Kalijaga Yogyakarta" loading="eager"/><figcaption>UIN SUNAN KALIJAGA • YOGYAKARTA</figcaption></figure><div class="sospro-detail"><div class="sospro-cards">${e.items.map((item, i) => `<article style="--order:${i}"><span>0${i + 1}</span><h2>${R(item[0])}</h2><p>${R(item[1])}</p></article>`).join('')}</div><div class="sospro-cta"><div><strong>Mulai langkah berikutnya.</strong><p>Informasi jalur, jadwal, dan persyaratan berada pada kanal resmi.</p><div class="sospro-links">${O(K.admission, 'Informasi PMB', 'button gold')}${O(K.university, 'Website UIN', 'button outline')}</div></div><a href="${K.admission}" target="_blank" rel="noopener noreferrer" class="sospro-qr"><img id="sospro-qr" alt="QR kode menuju admisi.uin-suka.ac.id" width="138" height="138"/><small>PINDAI INFO PMB</small></a></div></div></div>`;
     case "hero":
       return `<div class="hero-copy"><p class="lead">${R(e.intro)}</p><button class="button gold" data-action="next">Mulai eksplorasi <span>→</span></button><div class="hero-meta"><span>${R(B.deck.category || B.deck.subtitle)}</span><span>YOGYAKARTA</span></div></div><div class="science-visual" aria-hidden="true"><span class="orbit o1"></span><span class="orbit o2"></span><span class="orbit o3"></span><span class="nucleus"></span><span class="visual-label">RASA INGIN TAHU<br>ADALAH AWAL PENEMUAN.</span></div>`;
     case "campus":
@@ -85,6 +108,7 @@ function en() {
       `<main id="main" class="slide slide-${r.layout} deck-${R(e.id)}" tabindex="-1"><div class="slide-heading"><div class="eyebrow"><span>${String(n + 1).padStart(2, "0")} / ${e.slides.length}</span> ${R(r.eyebrow)}</div><h1>${R(r.title)}</h1>${r.layout !== "hero" && r.layout !== "closing" ? `<p class="intro">${R(r.intro)}</p>` : ""}</div>${Zt(r)}<div class="source-row">${r.source ? O(K[r.source], "Sumber resmi") : `<span>Materi narasumber • ${R(e.label || e.title)}</span>`}</div></main><footer class="controls"><button data-action="overview" title="Daftar slide (G)">▦ <span>Daftar slide</span></button><div class="progress" role="progressbar" aria-label="Kemajuan presentasi" aria-valuenow="${n + 1}" aria-valuemin="1" aria-valuemax="${e.slides.length}"><span style="width:${((n + 1) / e.slides.length) * 100}%"></span></div><span class="counter">${String(n + 1).padStart(2, "0")} / ${e.slides.length}</span><button data-action="notes" title="Catatan pembicara (N)" aria-label="Catatan pembicara">☷</button><button data-action="prev" aria-label="Slide sebelumnya" ${n === 0 ? "disabled" : ""}>←</button><button data-action="next" aria-label="Slide berikutnya" ${n === e.slides.length - 1 ? "disabled" : ""}>→</button></footer><dialog id="dialog" aria-labelledby="dialog-title"></dialog>`),
     j == null || j.setMode(e.id === "syubbanul-wathon" ? n : (r.shape || 0)),
     (Wt.textContent = `Slide ${n + 1} dari ${e.slides.length}. ${r.title}`),
+    nexoraPresenter.setSlide(r, q),
     r.layout === "closing" &&
       Jt.toDataURL(K.admission, {
         width: 260,
@@ -100,6 +124,18 @@ function en() {
           const a = document.querySelector("#qr");
           a && (a.alt = "Buka tautan admisi di bawah ini");
         }));
+  if (r.layout === 'sospro') {
+    Jt.toDataURL(K.admission, {
+      width: 220, margin: 2, errorCorrectionLevel: 'M',
+      color: { dark: '#0c2842', light: '#ffffff' },
+    }).then(src => {
+      const qr = document.querySelector('#sospro-qr');
+      if (qr) qr.src = src;
+    }).catch(() => {
+      const qr = document.querySelector('#sospro-qr');
+      if (qr) qr.alt = 'Kunjungi admisi.uin-suka.ac.id';
+    });
+  }
 }
 function $e() {
   const e = B;
@@ -270,6 +306,9 @@ se.addEventListener(
 );
 addEventListener("hashchange", $e);
 document.addEventListener("fullscreenchange", wt);
+// Langsung tampilkan presentasi SMA ketika domain dibuka tanpa hash.
+// Menu "Semua materi" tetap dapat membuka katalog deck di #/.
+if (!location.hash) location.hash = '#/presentasi/syubbanul-wathon/1';
 $e();
 xt(document.querySelector("#particles")).then((e) => {
   ((j = e),
@@ -315,6 +354,7 @@ async function printDeck() {
     // Elemen interaktif diubah menjadi konten cetak, tetap menyertakan detail bidang.
     root.querySelectorAll("[data-action]").forEach((el) => el.remove());
     root.querySelectorAll(".science-visual").forEach((el) => el.remove());
+    root.querySelectorAll('.cv-embed iframe, .nusantara-stage iframe').forEach(el => el.remove());
     root.querySelectorAll(".field-card").forEach((el, index) => {
       const detail = document.createElement("p");
       detail.className = "print-field-detail";
@@ -330,6 +370,9 @@ async function printDeck() {
     root.querySelectorAll(".qr-card img").forEach((img) => {
       img.removeAttribute("id");
       img.src = qr;
+    });
+    root.querySelectorAll('.sospro-qr img').forEach(img => {
+      img.removeAttribute('id'); img.src = qr;
     });
     root.querySelectorAll("img").forEach((img) => {
       img.loading = "eager";
