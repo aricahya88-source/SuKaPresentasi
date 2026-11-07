@@ -1,0 +1,18 @@
+/* Embedded Nusantara map also responds to the parent presentation's light mode. */
+body.embed-mode.theme-light {background:#eaf5fa;color:#204e59;}
+body.embed-mode.theme-light .cinema {background:#ecf6f8;}
+body.embed-mode.theme-light .map-stage {
+  background:radial-gradient(ellipse at 50% 46%,#c9e6e1 0%,#e5f3f3 61%,#eaf5f9 100%);
+}
+body.embed-mode.theme-light .stage-grid {opacity:.2;}
+body.embed-mode.theme-light .stage-light {opacity:.29;}
+body.embed-mode.theme-light .map-label {color:#286052;text-shadow:0 1px 10px #f5fff5;}
+body.embed-mode.theme-light .stage-badge,
+body.embed-mode.theme-light .stage-coordinates {color:#326a6b;}
+body.embed-mode.theme-light .stage-narrative strong {color:#154a48;text-shadow:0 3px 12px #f6fffc;}
+body.embed-mode.theme-light .stage-narrative div > span {color:#9b7133;}
+body.embed-mode.theme-light .stage-counter strong {color:#206c57;}
+body.embed-mode.theme-light .stage-counter small,
+body.embed-mode.theme-light .stage-counter > span,
+body.embed-mode.theme-light .stage-bottomline {color:#377374;}
+body.embed-mode.theme-light .stage-loading {background:#eaf5f9;color:#2b5b63;}

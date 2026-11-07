@@ -9,6 +9,7 @@ import {
 } from "./content.js";
 import { createParticles as xt } from "./particles.js";
 import { createNexoraPresenter } from './nexora/presenter.js';
+import { createAIMorphParticles } from './ai-morph-particles.js';
 const se = document.querySelector("#app"),
   Wt = document.querySelector("#status"),
   R = (e) =>
@@ -26,21 +27,26 @@ const se = document.querySelector("#app"),
 let B = null,
   j = null,
   q = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+let theme = 'dark';
 const nexoraPresenter = createNexoraPresenter(document.querySelector('#nexora-layer'));
+const aiParticles = createAIMorphParticles(document.querySelector('#ai-particles'));
 try {
   const e = localStorage.getItem("suka-motion");
   e !== null && (q = e === "on");
+  const savedTheme = localStorage.getItem('suka-theme');
+  if (savedTheme === 'light' || savedTheme === 'dark') theme = savedTheme;
 } catch {}
 let ne = null;
 const O = (e, n, r = "text-link") =>
     `<a class="${r}" href="${R(e)}" target="_blank" rel="noopener noreferrer">${R(n)} <span aria-hidden="true">↗</span></a>`,
   Qt = '<span class="brand-mark" aria-hidden="true">✳</span>';
 function yt(e) {
-  return `<header class="header"><a class="brand" href="#/">${Qt}<span><strong>${e ? R(B.deck.label || B.deck.title) : "SUKA Presentasi"}</strong><small>UIN Sunan Kalijaga</small></span></a><nav aria-label="Menu utama">${e ? '<a class="all-link" href="#/">Semua materi</a>' : '<span class="nav-label">RUANG GAGASAN & INSPIRASI</span>'}<button data-action="motion" aria-pressed="${q}" title="Aktifkan atau hentikan animasi">${q ? "◉" : "○"} <span>Animasi ${q ? "aktif" : "nonaktif"}</span></button><button data-action="print" class="print-button" title="Cetak semua slide / simpan sebagai PDF">▤ <span>Cetak PDF</span></button><button data-action="fullscreen" class="full" title="Layar penuh (F)" aria-label="Aktifkan layar penuh">⛶ <span>Full Screen</span></button></nav></header>`;
+  return `<header class="header"><a class="brand" href="#/">${Qt}<span><strong>${e ? R(B.deck.label || B.deck.title) : "SUKA Presentasi"}</strong><small>UIN Sunan Kalijaga</small></span></a><nav aria-label="Menu utama">${e ? '<a class="all-link" href="#/">Semua materi</a>' : '<span class="nav-label">RUANG GAGASAN & INSPIRASI</span>'}<button data-action="theme" class="theme-toggle" aria-label="${theme === 'dark' ? 'Aktifkan mode terang' : 'Aktifkan mode gelap'}" aria-pressed="${theme === 'light'}" title="Ganti mode gelap / terang">${theme === 'dark' ? '☀' : '☾'} <span>Mode ${theme === 'dark' ? 'Terang' : 'Gelap'}</span></button><button data-action="motion" aria-pressed="${q}" title="Aktifkan atau hentikan animasi">${q ? "◉" : "○"} <span>Animasi ${q ? "aktif" : "nonaktif"}</span></button><button data-action="print" class="print-button" title="Cetak semua slide / simpan sebagai PDF">▤ <span>Cetak PDF</span></button><button data-action="fullscreen" class="full" title="Layar penuh (F)" aria-label="Aktifkan layar penuh">⛶ <span>Full Screen</span></button></nav></header>`;
 }
 function Xt() {
   nexoraPresenter.hide();
-  ((document.body.className = "home" + (q ? "" : " still")),
+  aiParticles.setSlide(null, q, theme);
+  ((document.body.className = `home theme-${theme}` + (q ? "" : " still")),
     (se.innerHTML =
       yt(!1) +
       `<main id="main" class="home-main" tabindex="-1"><div class="eyebrow">SOSIALISASI & PROMOSI</div><div class="home-top"><div><h1>Satu ruang.<br><em>Banyak inspirasi.</em></h1><p class="lead">Kenali kampus, jelajahi peluang,<br>dan mulai perjalanan masa depanmu.</p></div><div class="orbit-caption"><span>ILMU</span><span>INTEGRASI</span><span>KEBERMANFAATAN</span></div></div><section aria-label="Pilihan materi" class="deck-grid">${bt.map((e) => `<a class="deck-card" href="#/presentasi/${e.id}/1"><div class="card-orbit" aria-hidden="true">✳</div><div class="badge">${e.slides.length} slide • Interaktif</div><div><h2>${R(e.title)}</h2><p>${R(e.subtitle)}</p><p class="deck-description">${R(e.description)}</p><span class="button gold">Buka presentasi <b>↗</b></span></div></a>`).join("")}<article class="coming"><span class="coming-icon">＋</span><h2>Ruang untuk<br>cerita berikutnya.</h2><p>Materi sosialisasi lainnya akan hadir di sini.</p><span class="badge">Segera hadir</span></article></section><footer class="home-footer"><span>SAINS YANG MENGINSPIRASI. NILAI YANG MENGARAHKAN.</span>${O(K.university, "Website kampus")}</footer></main><dialog id="dialog" aria-labelledby="dialog-title"></dialog>`),
@@ -52,7 +58,7 @@ function le(e) {
 function Zt(e) {
   switch (e.layout) {
     case 'cv':
-      return `<div class="cv-embed"><iframe src="/cv/index.html" title="Curriculum Vitae interaktif Ari Cahya Mawardi" loading="eager" allow="fullscreen"></iframe><div class="cv-print"><h2>Ari Cahya Mawardi</h2><p>Dosen Media Pembelajaran • UIN Sunan Kalijaga Yogyakarta</p><p>Profil • Pengalaman • Pengajaran • Penelitian dan publikasi</p></div></div>`;
+      return `<div class="cv-embed"><iframe src="/cv/index.html?theme=${theme}" title="Curriculum Vitae interaktif Ari Cahya Mawardi" loading="eager" allow="fullscreen"></iframe><div class="cv-print"><h2>Ari Cahya Mawardi</h2><p>Dosen Media Pembelajaran • UIN Sunan Kalijaga Yogyakarta</p><p>Profil • Pengalaman • Pengajaran • Penelitian dan publikasi</p></div></div>`;
     case 'timeline':
       return `<div class="sy-timeline">${e.timeline.map((t, i) => `<article class="sy-time-step" style="--order:${i}"><span class="sy-year">${R(t.year)}</span><div class="sy-time-line"><span></span></div><div class="sy-time-body"><h2>${R(t.title)}</h2><p>${R(t.detail)}</p>${i === 2 ? '<small>UIN Sunan Kalijaga • Posisi kedua nasional menurut rilis kampus untuk THE WUR 2027</small>' : ''}</div></article>`).join('')}</div>`;
     case 'nexora':
@@ -68,7 +74,7 @@ function Zt(e) {
     case 'seed-bridge':
       return `<div class="sy-seed-bridge"><div class="sy-seed-visual" aria-hidden="true"><div class="seedsoil"></div><div class="seedstem"></div><div class="seedleaf leaf-l"></div><div class="seedleaf leaf-r"></div><div class="seedglow"></div></div><div class="sy-seed-values">${e.items.map((item, i) => `<article style="--order:${i}"><span>0${i + 1}</span><h2>${R(item[0])}</h2><p>${R(item[1])}</p></article>`).join('')}</div></div>`;
     case 'nusantara':
-      return `<div class="nusantara-stage"><iframe src="/nusantara/index.html?embed=1&loop=0" title="Animasi peta Indonesia dengan penyemaian benih dan pertumbuhan tanaman" tabindex="-1" loading="eager"></iframe><div class="nusantara-message"><strong>Dari Syubbanul Wathon,</strong><span>benih kebaikan tumbuh untuk Indonesia.</span></div></div>`;
+      return `<div class="nusantara-stage"><iframe src="/nusantara/index.html?embed=1&loop=0&theme=${theme}" title="Animasi peta Indonesia dengan penyemaian benih dan pertumbuhan tanaman" tabindex="-1" loading="eager"></iframe><div class="nusantara-message"><strong>Dari Syubbanul Wathon,</strong><span>benih kebaikan tumbuh untuk Indonesia.</span></div></div>`;
     case 'sospro':
       return `<div class="sospro-layout"><figure class="sospro-photo"><img src="/assets/campus.jpg" alt="Ilustrasi aktivitas akademik UIN Sunan Kalijaga Yogyakarta" loading="eager"/><figcaption>UIN SUNAN KALIJAGA • YOGYAKARTA</figcaption></figure><div class="sospro-detail"><div class="sospro-cards">${e.items.map((item, i) => `<article style="--order:${i}"><span>0${i + 1}</span><h2>${R(item[0])}</h2><p>${R(item[1])}</p></article>`).join('')}</div><div class="sospro-cta"><div><strong>Mulai langkah berikutnya.</strong><p>Informasi jalur, jadwal, dan persyaratan berada pada kanal resmi.</p><div class="sospro-links">${O(K.admission, 'Informasi PMB', 'button gold')}${O(K.university, 'Website UIN', 'button outline')}</div></div><a href="${K.admission}" target="_blank" rel="noopener noreferrer" class="sospro-qr"><img id="sospro-qr" alt="QR kode menuju admisi.uin-suka.ac.id" width="138" height="138"/><small>PINDAI INFO PMB</small></a></div></div></div>`;
     case "hero":
@@ -101,14 +107,15 @@ function Zt(e) {
 function en() {
   const { deck: e, index: n } = B,
     r = e.slides[n];
-  ((document.body.className = `presenting deck-${e.id} ${r.dark ? "dark" : "light"}${q ? "" : " still"}${r.layout === "seed" ? " scene-finale" : ""}`),
+  ((document.body.className = `presenting deck-${e.id} ${r.dark ? "dark" : "light"} theme-${theme}${q ? "" : " still"}${r.layout === "seed" ? " scene-finale" : ""}`),
     (document.title = `${n + 1}. ${r.title} — SUKA Presentasi`),
     (se.innerHTML =
       yt(!0) +
       `<main id="main" class="slide slide-${r.layout} deck-${R(e.id)}" tabindex="-1"><div class="slide-heading"><div class="eyebrow"><span>${String(n + 1).padStart(2, "0")} / ${e.slides.length}</span> ${R(r.eyebrow)}</div><h1>${R(r.title)}</h1>${r.layout !== "hero" && r.layout !== "closing" ? `<p class="intro">${R(r.intro)}</p>` : ""}</div>${Zt(r)}<div class="source-row">${r.source ? O(K[r.source], "Sumber resmi") : `<span>Materi narasumber • ${R(e.label || e.title)}</span>`}</div></main><footer class="controls"><button data-action="overview" title="Daftar slide (G)">▦ <span>Daftar slide</span></button><div class="progress" role="progressbar" aria-label="Kemajuan presentasi" aria-valuenow="${n + 1}" aria-valuemin="1" aria-valuemax="${e.slides.length}"><span style="width:${((n + 1) / e.slides.length) * 100}%"></span></div><span class="counter">${String(n + 1).padStart(2, "0")} / ${e.slides.length}</span><button data-action="notes" title="Catatan pembicara (N)" aria-label="Catatan pembicara">☷</button><button data-action="prev" aria-label="Slide sebelumnya" ${n === 0 ? "disabled" : ""}>←</button><button data-action="next" aria-label="Slide berikutnya" ${n === e.slides.length - 1 ? "disabled" : ""}>→</button></footer><dialog id="dialog" aria-labelledby="dialog-title"></dialog>`),
     j == null || j.setMode(e.id === "syubbanul-wathon" ? n : (r.shape || 0)),
     (Wt.textContent = `Slide ${n + 1} dari ${e.slides.length}. ${r.title}`),
-    nexoraPresenter.setSlide(r, q),
+    nexoraPresenter.setSlide(r, q, theme),
+    aiParticles.setSlide(e.id === 'syubbanul-wathon' ? r.aiShape : null, q, theme),
     r.layout === "closing" &&
       Jt.toDataURL(K.admission, {
         width: 260,
@@ -218,6 +225,11 @@ function W(e) {
       } catch {}
       (j == null || j.setEnabled(q), $e());
       break;
+    case 'theme':
+      theme = theme === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem('suka-theme', theme); } catch {}
+      $e();
+      break;
     case "close":
       document.querySelector("#dialog").close();
       break;
@@ -232,7 +244,7 @@ function W(e) {
       B &&
         re(
           "Catatan pembicara",
-          `<p>${R(B.deck.slides[B.index].notes)}</p><div class="shortcuts"><kbd>← →</kbd> Pindah slide <kbd>F</kbd> Full Screen <kbd>G</kbd> Daftar <kbd>N</kbd> Catatan <kbd>Esc</kbd> Tutup / keluar layar penuh</div>`,
+          `<p>${R(B.deck.slides[B.index].notes)}</p><div class="shortcuts"><kbd>← →</kbd> Pindah slide <kbd>T</kbd> Gelap / terang <kbd>F</kbd> Full Screen <kbd>G</kbd> Daftar <kbd>N</kbd> Catatan <kbd>Esc</kbd> Tutup / keluar layar penuh</div>`,
         );
       break;
   }
@@ -282,7 +294,9 @@ addEventListener("keydown", (e) => {
         ? (e.preventDefault(), W("fullscreen"))
         : n === "g" && B
           ? W("overview")
-          : n === "n" && B && W("notes");
+          : n === "n" && B
+            ? W("notes")
+            : n === "t" && W("theme");
 });
 let ae = null;
 se.addEventListener(

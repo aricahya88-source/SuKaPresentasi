@@ -1,4 +1,5 @@
 'use strict';
+document.body.classList.toggle('theme-light', new URLSearchParams(location.search).get('theme') === 'light');
 
 // Materi penelitian dipertahankan sesuai dokumen profil akademik yang diberikan.
 const research = [

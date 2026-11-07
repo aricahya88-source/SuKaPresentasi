@@ -1,0 +1,70 @@
+/* Light companion skin for the original interactive academic CV. */
+body.theme-light {
+  --bg:#edf6fd; --night:#f5f9fe; --text:#142f50; --muted:#536d87;
+  --border:rgba(48,108,166,.17); --card:rgba(255,255,255,.92);
+  color:#142f50;
+  background:radial-gradient(ellipse at 78% 43%,#d7ecfa 0,#f4f9ff 57%,#ebf5fd 100%);
+}
+body.theme-light::before {background:linear-gradient(110deg,#f9fcff40,transparent 45%,#bad9ef34);}
+body.theme-light .ambient-one {background:#80c7ff;opacity:.25;}
+body.theme-light .ambient-two {background:#b0def9;opacity:.22;}
+body.theme-light .grid-overlay {opacity:.20;}
+body.theme-light .presentation-frame {
+  background:linear-gradient(132deg,rgba(252,254,255,.98),rgba(231,243,253,.96) 68%,rgba(244,250,255,.98));
+  border-color:rgba(58,127,181,.22);box-shadow:0 22px 80px #4f8bac31;
+}
+body.theme-light .brand-copy strong,
+body.theme-light .hero-title,
+body.theme-light .profile-heading h2,
+body.theme-light .panel-top h3,
+body.theme-light .detail strong,
+body.theme-light .course-card strong,
+body.theme-light .experience-line strong,
+body.theme-light .teaching-list strong,
+body.theme-light .research-title {color:#163452;}
+body.theme-light .hero-title .highlighted {background:linear-gradient(100deg,#133b65,#357bb8 49%,#53a9db);background-clip:text;-webkit-text-fill-color:transparent;}
+body.theme-light .hero-title .title-period {color:#af8746;}
+body.theme-light .profile-heading h2 em {color:#2776a9;}
+body.theme-light .hero-subtitle,
+body.theme-light .role-line,
+body.theme-light .top-indicator,
+body.theme-light .brand-copy small,
+body.theme-light .edition,
+body.theme-light .overline,
+body.theme-light .eyebrow {color:#466b8b;}
+body.theme-light .info-shell {
+  background:linear-gradient(140deg,rgba(255,255,255,.96),rgba(231,243,253,.96));
+  border-color:rgba(40,105,157,.22);box-shadow:0 18px 46px #84aed03f;
+}
+body.theme-light .tabbar {border-color:#cbddeb;}
+body.theme-light .tab {color:#607b94;}
+body.theme-light .tab.is-active {color:#14456d;}
+body.theme-light .tab.is-active .tab-icon {color:#2589bf;}
+body.theme-light .content-panel {color:#1f3e59;}
+body.theme-light .panel-kicker,
+body.theme-light .detail > span,
+body.theme-light .research-year,
+body.theme-light .course-number {color:#377aab;}
+body.theme-light .detail,
+body.theme-light .course-card,
+body.theme-light .panel-callout,
+body.theme-light .experience-line,
+body.theme-light .research-item,
+body.theme-light .teaching-list li {
+  background:rgba(255,255,255,.82);border-color:rgba(63,120,167,.19);
+}
+body.theme-light .content-panel p,
+body.theme-light .course-card p,
+body.theme-light .panel-callout p,
+body.theme-light .research-note,
+body.theme-light .panel-callout strong,
+body.theme-light .panel-top,
+body.theme-light .experience-line span {color:#466785;}
+body.theme-light .bottom-bar {border-color:#cddfeb;color:#496b8d;}
+body.theme-light .bottom-caption,
+body.theme-light .footer-tip {color:#466785;}
+body.theme-light .control-button,
+body.theme-light .play-button {color:#1e557e;border-color:#abcfe6;}
+body.theme-light .portrait-card {box-shadow:0 22px 60px #5988a85e,0 0 0 7px #81b6d121;}
+body.theme-light .floating-tag {background:rgba(244,250,255,.96);color:#275676;border-color:#a9cfe8;}
+body.theme-light .grid-overlay {background-image:linear-gradient(#347aad0a 1px,transparent 1px),linear-gradient(90deg,#347aad0a 1px,transparent 1px);}

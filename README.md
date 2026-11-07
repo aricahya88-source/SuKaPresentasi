@@ -9,6 +9,24 @@ Website presentasi 17 slide untuk Expo Campus / Guest Teacher oleh **Ari Cahya M
 
 Website **tidak memerlukan database, API key, autentikasi, atau backend**. Aset animasi disimpan lokal. Tautan penerimaan mahasiswa menuju website resmi UIN Sunan Kalijaga.
 
+## Revisi V2 — Mode gelap/terang dan partikel AI
+
+- Tombol **Mode Terang / Mode Gelap** tersedia di navigasi atas, dengan pintasan **T**. Pilihan disimpan dalam browser sehingga tetap berlaku saat berpindah slide atau membuka ulang presentasi.
+- Warna, teks, kartu, menu, dan panggung 3D NEXORA mengikuti mode terpilih.
+- Tampilan CV (slide 2) dan peta Nusantara (slide 16) menerima pengaturan tema dari website utama; keduanya tetap merupakan modul animasi yang terpisah.
+- Slide 9–14 memiliki **partikel Canvas 2D** yang berubah bentuk setiap kali slide berganti:
+
+  | Slide | Bentuk partikel | Makna |
+  | --- | --- | --- |
+  | 9 | Otak | Tantangan berpikir kritis di era AI |
+  | 10 | Neuron (sel saraf) | Inspirasi biologis jaringan saraf |
+  | 11 | Jaringan saraf buatan | Kolaborasi teknologi dengan manusia |
+  | 12 | Mikrocip | Profesi dan keterampilan digital |
+  | 13 | Globe | Beragam profesi di dunia nyata |
+  | 14 | Hati | Empati serta pengabdian lintas profesi |
+
+Partikel dibuat transparan dan ditempatkan di belakang materi, tanpa label nama bentuk. Transisi antar-bentuk mengikuti arah slide; animasi dapat dinonaktifkan menggunakan tombol **Animasi** tanpa menghilangkan isi.
+
 ## Memulai di komputer
 
 Prasyarat: **Node.js 22+** dan browser modern dengan WebGL. Ekstrak ZIP hingga terlihat `package.json`.
@@ -71,6 +89,7 @@ Good Character dibentuk pada tahun kedua masa pengabdian narasumber dalam kontek
 - Panah kanan/kiri atau Page Down/Page Up: maju/mundur satu slide.
 - Home/End: slide pertama/terakhir.
 - F: layar penuh; G: daftar slide; N: catatan pembicara.
+- T: beralih antara mode gelap dan terang.
 - Tombol **Animasi**: mengaktifkan/menonaktifkan animasi presentasi.
 - Pada slide NEXORA: seret model untuk memutar kamera; scroll di atas model untuk zoom.
 - Pada CV: pilih tab Profil, Pengalaman, Pengajaran, Publikasi; dapat diputar otomatis dalam satu slide.
@@ -87,6 +106,7 @@ Di browser yang tidak mendukung WebGL, NEXORA menampilkan ilustrasi cadangan den
 | `src/nexora/building.js` | Model geometri bangunan NEXORA asli |
 | `src/nexora/scene.js` | Kamera, WebGL, animasi perakitan, dan orbit |
 | `src/nexora/presenter.js` | Sinkronisasi model dengan slide |
+| `src/ai-morph-particles.js` | Enam bentuk partikel dan animasi morph Canvas 2D |
 | `src/main.js` | Layout, navigasi, catatan, PDF, dan QR |
 | `src/style.css` | Desain sinematik dan responsif |
 | `public/cv/` | Slide CV independen |

@@ -2270,3 +2270,167 @@ body.deck-syubbanul-wathon .slide-sospro .slide-heading h1 {font-size:clamp(2.25
   .print-slide .nusantara-message {color:#1a394f;text-shadow:none;}
   .print-slide .seedstem,.print-slide .seedleaf {animation:none;}
 }
+
+/* ================================================================
+   THEME V2 • DARK / LIGHT + MORPHING AI PARTICLE BACKGROUND
+   ================================================================ */
+body.deck-syubbanul-wathon .header .theme-toggle {
+  background:rgba(36,83,117,.52);border:1px solid #477a9c;
+  border-radius:999px;padding:9px 14px;gap:8px;
+  color:#d7edf8;transition:background .25s,border-color .25s,transform .25s;
+}
+body.deck-syubbanul-wathon .header .theme-toggle:hover {background:#225f88;border-color:#74c5eb;transform:translateY(-1px);}
+body.deck-syubbanul-wathon .header .theme-toggle:focus-visible {outline:2px solid #b9e8ff;outline-offset:3px;}
+
+#ai-particles {
+  display:none;position:fixed;z-index:1;pointer-events:none;
+  left:27%;right:1%;top:83px;bottom:77px;width:72%;height:calc(100svh - 160px);
+  opacity:.89;
+  mask-image:linear-gradient(90deg,transparent 0%,#000 23%,#000 89%,transparent 100%);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 23%,#000 89%,transparent 100%);
+}
+#ai-particles.active {display:block;}
+body.deck-syubbanul-wathon .slide-insights,
+body.deck-syubbanul-wathon .slide-manifesto,
+body.deck-syubbanul-wathon .slide-careers,
+body.deck-syubbanul-wathon .slide-service {position:relative;z-index:2;}
+body.deck-syubbanul-wathon .slide-insights .sy-insight,
+body.deck-syubbanul-wathon .slide-careers .sy-career-grid article,
+body.deck-syubbanul-wathon .slide-manifesto .sy-manifesto-grid article {
+  backdrop-filter:blur(10px);
+}
+
+body.theme-light.deck-syubbanul-wathon {
+  --green:#255d83;--sage:#317baa;--gold:#a97838;--muted:#4e6e87;
+  color:#153a5a;background:#eef6fc;
+}
+body.theme-light.deck-syubbanul-wathon:before {
+  background:radial-gradient(ellipse at 79% 34%,#d8ecf8 0%,#eaf5fc 46%,transparent 70%),
+             radial-gradient(ellipse at 15% 81%,#dfeaf7,transparent 63%),#f4f9fe;
+}
+body.theme-light.deck-syubbanul-wathon .header {
+  border-color:#bcd4e5;color:#1c4465;
+}
+body.theme-light.deck-syubbanul-wathon .brand-mark {color:#307ca5;}
+body.theme-light.deck-syubbanul-wathon .brand small {color:#6b88a0;}
+body.theme-light.deck-syubbanul-wathon .header .all-link,
+body.theme-light.deck-syubbanul-wathon .header button {color:#244c70;}
+body.theme-light.deck-syubbanul-wathon .header .theme-toggle {
+  background:linear-gradient(120deg,#ffffff,#e1eff9);border-color:#afd0e7;
+  color:#245980;box-shadow:0 7px 18px #7baacc25;
+}
+body.theme-light.deck-syubbanul-wathon .header .theme-toggle:hover {background:#d4e9f9;border-color:#72b3db;}
+body.theme-light.deck-syubbanul-wathon .slide-heading h1 {color:#163d60;text-shadow:none;}
+body.theme-light.deck-syubbanul-wathon .slide-heading .eyebrow {color:#a87936;}
+body.theme-light.deck-syubbanul-wathon .intro {color:#4e6e85;}
+body.theme-light.deck-syubbanul-wathon .source-row {color:#50768d;}
+body.theme-light.deck-syubbanul-wathon .controls {border-color:#b8d0e3;color:#254f6e;}
+body.theme-light.deck-syubbanul-wathon .controls button {
+  background:#fff;color:#2b5d7e;border-color:#b4cfe3;
+}
+body.theme-light.deck-syubbanul-wathon .controls button:hover {background:#e4f1fa;}
+body.theme-light.deck-syubbanul-wathon .progress {background:#d0e2ef;}
+body.theme-light.deck-syubbanul-wathon .counter {color:#356280;}
+body.theme-light.deck-syubbanul-wathon dialog {background:#f8fcff;color:#224966;border-color:#b6d4e9;}
+
+#nexora-layer[data-theme="light"] {
+  background:radial-gradient(circle at 50% 44%,#d8ebf7,#eff8fc 74%);
+  border-color:#b8d6e7;box-shadow:0 22px 75px #6b9dc534;
+}
+#nexora-layer[data-theme="light"] .nexora-webgl-fallback {background:radial-gradient(circle,#e4f1fb,#c5e1f3);color:#254b68;}
+body.theme-light.deck-syubbanul-wathon .nexora-stage-meta {color:#2c82ae;}
+body.theme-light.deck-syubbanul-wathon .live-marker {background:#3caa97;box-shadow:0 0 13px #54cbbb;}
+body.theme-light.deck-syubbanul-wathon .nexora-value {
+  border-color:#c5ddeb;background:linear-gradient(110deg,rgba(255,255,255,.89),rgba(235,246,254,.86));
+  box-shadow:0 9px 26px #a3c4de25;
+}
+body.theme-light.deck-syubbanul-wathon .nexora-value > span {color:#a77939;}
+body.theme-light.deck-syubbanul-wathon .nexora-value strong {color:#245377;}
+body.theme-light.deck-syubbanul-wathon .nexora-value p {color:#5b7990;}
+body.theme-light.deck-syubbanul-wathon .nexora-hint {color:#7591a6;}
+
+body.theme-light.deck-syubbanul-wathon .cv-embed {border-color:#bbd7e9;background:#edf7ff;}
+body.theme-light.deck-syubbanul-wathon .sy-year {color:#a5793b;}
+body.theme-light.deck-syubbanul-wathon .sy-time-line {border-color:#85b9d8;}
+body.theme-light.deck-syubbanul-wathon .sy-time-line:before {background:#d8ebf7;border-color:#a57b41;box-shadow:0 0 0 5px #eaf3fa;}
+body.theme-light.deck-syubbanul-wathon .sy-time-body {
+  background:linear-gradient(160deg,#ffffff,#e6f3fc);border-color:#c3dbe9;color:#234967;
+  box-shadow:0 16px 36px #93b9d12c;
+}
+body.theme-light.deck-syubbanul-wathon .sy-time-body p {color:#56758c;}
+body.theme-light.deck-syubbanul-wathon .sy-time-body small {border-color:#bfd7e8;color:#986f3c;}
+body.theme-light.deck-syubbanul-wathon .sy-orbit {opacity:.19;}
+body.theme-light.deck-syubbanul-wathon .sy-orbit-core {background:radial-gradient(circle,#cce6f7,#e5f3fb);color:#3979a6;}
+body.theme-light.deck-syubbanul-wathon .sy-insight,
+body.theme-light.deck-syubbanul-wathon .sy-career-grid article {
+  background:linear-gradient(150deg,rgba(255,255,255,.91),rgba(227,241,250,.83));
+  border-color:#c3dce9;box-shadow:0 14px 34px #a3c0d03b;
+}
+body.theme-light.deck-syubbanul-wathon .sy-insight h2,
+body.theme-light.deck-syubbanul-wathon .sy-career-grid h2 {color:#204c6c;}
+body.theme-light.deck-syubbanul-wathon .sy-insight p,
+body.theme-light.deck-syubbanul-wathon .sy-career-grid p {color:#5c7990;}
+body.theme-light.deck-syubbanul-wathon .sy-insight-symbol {color:#a97b40;}
+body.theme-light.deck-syubbanul-wathon .sy-ai-graphic span {color:#5ba2d0;}
+body.theme-light.deck-syubbanul-wathon .sy-manifesto blockquote {color:#2d5878;border-color:#b78a43;}
+body.theme-light.deck-syubbanul-wathon .sy-manifesto-grid article {
+  background:linear-gradient(130deg,rgba(255,255,255,.94),rgba(224,240,250,.92));
+  color:#244a6b;border-color:#bed8e9;
+}
+body.theme-light.deck-syubbanul-wathon .sy-manifesto-grid span {color:#a2793e;}
+body.theme-light.deck-syubbanul-wathon .sy-manifesto-grid small {color:#5c7b94;}
+body.theme-light.deck-syubbanul-wathon .sy-career-symbol {background:#cde7f7;color:#33749e;}
+body.theme-light.deck-syubbanul-wathon .sy-subnote {color:#6a8aa1;}
+body.theme-light.deck-syubbanul-wathon .sy-service-grid article {
+  background:linear-gradient(150deg,#fff,#e3f1fa);border-color:#b9d7e8;
+  box-shadow:0 15px 40px #a6c5d733;
+}
+body.theme-light.deck-syubbanul-wathon .sy-service-index {color:#ad8349;}
+body.theme-light.deck-syubbanul-wathon .sy-service-grid h2 {color:#244f70;}
+body.theme-light.deck-syubbanul-wathon .sy-service-grid p {color:#5d7d95;}
+body.theme-light.deck-syubbanul-wathon .sy-service-statement {color:#265777;}
+body.theme-light.deck-syubbanul-wathon .sy-service-statement em {color:#a47b3e;}
+body.theme-light.deck-syubbanul-wathon .sy-seed-values article {background:#e4f3fa;border-color:#4f9b81;}
+body.theme-light.deck-syubbanul-wathon .sy-seed-values h2 {color:#205675;}
+body.theme-light.deck-syubbanul-wathon .sy-seed-values p {color:#54788d;}
+body.theme-light.deck-syubbanul-wathon .sy-seed-values span {color:#a37e45;}
+body.theme-light.deck-syubbanul-wathon .nusantara-stage {background:#eaf6fb;}
+body.theme-light.deck-syubbanul-wathon .nusantara-stage:after {
+  background:linear-gradient(180deg,#eaf6fbdd 0%,transparent 32%,transparent 72%,#eaf6fb99 100%);
+}
+body.theme-light.deck-syubbanul-wathon .nusantara-message {text-shadow:0 3px 14px #f6ffff;}
+body.theme-light.deck-syubbanul-wathon .nusantara-message strong {color:#9e7335;}
+body.theme-light.deck-syubbanul-wathon .nusantara-message span {color:#23536b;}
+body.theme-light.deck-syubbanul-wathon .sospro-photo {border-color:#c9dfec;}
+body.theme-light.deck-syubbanul-wathon .sospro-cards article,
+body.theme-light.deck-syubbanul-wathon .sospro-cta {
+  background:linear-gradient(120deg,#fff,#e7f3fa);border-color:#c3dce9;
+  box-shadow:0 12px 29px #9ec5dd30;
+}
+body.theme-light.deck-syubbanul-wathon .sospro-cards article span {color:#a37b45;}
+body.theme-light.deck-syubbanul-wathon .sospro-cards h2,
+body.theme-light.deck-syubbanul-wathon .sospro-cta strong {color:#265477;}
+body.theme-light.deck-syubbanul-wathon .sospro-cards p,
+body.theme-light.deck-syubbanul-wathon .sospro-cta p {color:#5a7a91;}
+body.theme-light.deck-syubbanul-wathon .sospro-qr {box-shadow:0 4px 16px #9bbcd634;}
+body.theme-light.deck-syubbanul-wathon .sospro-links .button.outline {border-color:#7faaca;color:#265775;}
+body.theme-light.deck-syubbanul-wathon .sospro-links .button.gold {background:#b88c4c;color:#fff;}
+body.theme-light.deck-syubbanul-wathon #ai-particles {opacity:.69;}
+
+/* The presentation catalogue respects the persisted choice too. */
+body.home.theme-dark {color:#f3f9ff;background:#08182c;}
+body.home.theme-dark:before {background:radial-gradient(circle at 80% 35%,#153a58,transparent 65%),#08182c;}
+body.home.theme-dark .header {border-color:#2d4b63;}
+body.home.theme-dark .deck-card,
+body.home.theme-dark .coming {background:#102e49;border-color:#3c6079;color:#e6f3fc;}
+body.home.theme-dark .deck-card p,
+body.home.theme-dark .coming p {color:#b0cadd;}
+body.home.theme-dark .home-footer {border-color:#36566d;}
+
+@media(max-width:760px) {
+  #ai-particles {left:4%;right:0;top:150px;bottom:88px;width:94%;height:calc(100svh - 240px);opacity:.34;}
+  body.theme-light.deck-syubbanul-wathon #ai-particles {opacity:.3;}
+  body.deck-syubbanul-wathon .header .theme-toggle {padding:8px 9px;font-size:17px;min-width:38px;justify-content:center;}
+  body.deck-syubbanul-wathon .header nav {gap:8px;}
+}
+@media print {#ai-particles {display:none!important;}}

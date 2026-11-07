@@ -379,6 +379,7 @@
 
   function init() {
     try {
+      document.body.classList.toggle('theme-light', params.get('theme') === 'light');
       if (embed) document.body.classList.add('embed-mode');
       stage = $('mapStage'); mapSvg = $('mapSvg'); canvas = $('growthCanvas'); ctx = canvas.getContext('2d', { alpha: true });
       if (!ctx) throw new Error('Browser ini tidak mendukung Canvas 2D.');

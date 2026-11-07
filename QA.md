@@ -5,6 +5,7 @@ Tanggal penyusunan: 7 November 2026.
 ## Pengujian otomatis
 
 - `npm test` menguji konsistensi deck, 17 slide, urutan fase NEXORA, dan keberadaan aset CV/Nusantara.
+- Tes V2 memeriksa bentuk partikel AI (otak, neuron, jaringan, mikrocip, globe, hati), determinisme, batas koordinat, serta integrasi tema sampai ke CV/Nusantara.
 - Pengujian model NEXORA dari proyek aslinya memeriksa 14 grup terpisah, transformasi fondasi/atap/lantai, X-Ray, GLB, geometri, dan kamera.
 - `npm run build` mengkompilasi source Vite dan menyalin seluruh aset statis ke `dist/`.
 - `unzip -t` dipakai pada ZIP akhir untuk memeriksa CRC dan keterbacaan arsip.
@@ -21,6 +22,8 @@ Peninjauan visual via browser terintegrasi **tidak dapat dilakukan** pada lingku
 6. Slide 16: peta Indonesia dan tanaman tampil dari file lokal.
 7. Slide 17: informasi UIN umum, website, QR ke situs admisi.
 8. Cetak PDF: output statis tidak memuat iframe kosong dan tautan QR dapat dipindai.
+9. Ubah Mode Terang dan Mode Gelap pada slide 2, 4, 9, 11, 16, dan 17: pastikan kartu dan teks tetap terbaca.
+10. Lihat slide 9–14 secara berurutan: partikel berubah bentuk dengan transisi halus, tidak menutupi teks.
 
 ## Batasan yang disengaja
 

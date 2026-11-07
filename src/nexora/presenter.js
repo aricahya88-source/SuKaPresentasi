@@ -39,10 +39,22 @@ export function createNexoraPresenter(host) {
     host.setAttribute('aria-hidden', 'true');
   }
 
-  function setSlide(slide, motionEnabled = true) {
+  function setTheme(theme) {
+    const light = theme === 'light';
+    host.dataset.theme = light ? 'light' : 'dark';
+    if (!engine) return;
+    const backdrop = light ? 0xddecf6 : 0x10263a;
+    engine.scene.background.set(backdrop);
+    if (engine.scene.fog) engine.scene.fog.color.set(backdrop);
+    const ground = engine.scene.children.find(node => node.isMesh && node.geometry?.type === 'PlaneGeometry');
+    if (ground?.material?.color) ground.material.color.set(light ? 0xc7dbe9 : 0x132c41);
+  }
+
+  function setSlide(slide, motionEnabled = true, theme = 'dark') {
     if (!slide || slide.layout !== 'nexora') { hide(); return; }
     host.classList.add('show');
     host.setAttribute('aria-hidden', 'false');
+    setTheme(theme);
     host.dataset.stage = slide.scene || 'opening';
     const changedStage = activeScene !== slide.scene;
     if (!engine && !failed) {
@@ -50,6 +62,7 @@ export function createNexoraPresenter(host) {
         engine = new NexoraScene(host);
         engine.setMode('explore');
         engine.setProgress(slide.scene === 'opening' ? .05 : 0);
+        setTheme(theme);
       } catch (error) {
         console.warn('NEXORA WebGL tidak tersedia; menggunakan tampilan cadangan.', error);
         try { engine?.dispose(); } catch {}
