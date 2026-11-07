@@ -18,6 +18,14 @@ test("10 slide Pendidikan Fisika dan 10 bentuk unik", () => {
   assert.equal(parseRoute("#/presentasi/unknown/6"), null);
   assert.equal(parseRoute("#/presentasi/pendidikan-fisika/999").index, 9);
 });
+test("deck SMA Syubbanul Wathon tetap tersedia", () => {
+  const d = decks.find((deck) => deck.id === "syubbanul-wathon");
+  assert.ok(d);
+  assert.equal(d.slides.length, 10);
+  assert.equal(d.slides[3].layout, "building");
+  assert.equal(d.slides[9].layout, "seed");
+  assert.equal(parseRoute("#/presentasi/syubbanul-wathon/10").index, 9);
+});
 test("seluruh bentuk deterministik, finite, dan berbeda", () => {
   assert.equal(shapeNames.length, 10);
   const shapes = shapeNames.map((_, i) => createShape(i, 720));

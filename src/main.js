@@ -1,5 +1,6 @@
 import "./style.css";
 import Jt from "qrcode";
+import { gsap } from "gsap";
 import {
   links as K,
   fields as kt,
@@ -59,9 +60,15 @@ function Zt(e) {
     case "admission":
       return `<div class="journey">${e.items.map((n) => `<article><span class="step">${n[0]}</span><h2>${R(n[1])}</h2><p>${R(n[2])}</p></article>`).join("")}</div>${e.layout === "admission" ? `<div class="action-row">${O(K.admission, "Jadwal, biaya & informasi beasiswa", "button green")}${O(K.requirements, "Jalur & persyaratan")}</div>` : '<p class="micro">Ilustrasi alur belajar, bukan pembagian semester. Rincian mata kuliah mengikuti kurikulum resmi.</p>'}`;
     case "fields":
-      return `<div class="field-grid">${kt.map((n, r) => `<button class="field-card field-${r}" data-field="${r}" aria-label="Jelajahi ${R(n.title)}"><span class="field-symbol" aria-hidden="true">${n.symbol}</span><span class="field-tag">${R(n.tag)}</span><strong>${R(n.title)}</strong><span class="field-caption">${R(n.text)}</span><span class="field-arrow" aria-hidden="true">↗</span></button>`).join("")}</div><p class="micro">Klik kartu untuk menjelajahi contoh penerapannya.</p>`;
+      return e.items
+        ? `<div class="field-grid custom-fields">${e.items.map((n, r) => `<article class="field-card field-${r}"><span class="field-symbol" aria-hidden="true">${["◉", "✦", "◇", "⌁"][r] || "•"}</span><span class="field-tag">GOOD CHARACTER</span><strong>${R(n[0])}</strong><span class="field-caption">${R(n[1])}</span></article>`).join("")}</div>`
+        : `<div class="field-grid">${kt.map((n, r) => `<button class="field-card field-${r}" data-field="${r}" aria-label="Jelajahi ${R(n.title)}"><span class="field-symbol" aria-hidden="true">${n.symbol}</span><span class="field-tag">${R(n.tag)}</span><strong>${R(n.title)}</strong><span class="field-caption">${R(n.text)}</span><span class="field-arrow" aria-hidden="true">↗</span></button>`).join("")}</div><p class="micro">Klik kartu untuk menjelajahi contoh penerapannya.</p>`;
     case "experience":
       return `<div class="experience-grid">${e.items.map((n, r) => `<article><div class="lab-glyph" aria-hidden="true">${r ? "◈" : "⌁"}</div><h2>${R(n[0])}</h2><p>${R(n[1])}</p></article>`).join("")}</div>`;
+    case "building":
+      return `<div class="building-scene" aria-label="Ilustrasi bangunan karakter"><div class="building-3d"><div class="building-roof"></div><div class="building-wall"><span>${R(e.buildingLabel || "WATAK DAN KARAKTER SANTRI")}</span></div><div class="building-foundation"><b>GOOD CHARACTER</b><small>Knowing · Desiring · Doing the Good</small></div></div><div class="building-tags">${(e.items || []).map((n) => `<span>${R(n[0])}</span>`).join("")}</div></div>`;
+    case "seed":
+      return `<div class="seed-scene"><div class="seed-glow"></div><div class="seed-object">✦</div><div class="seed-map"><span>INDONESIA</span></div><div class="seed-caption">${R(e.seedCaption || "Benih kebaikan untuk Indonesia")}</div></div>`;
     case "closing":
       return `<div class="closing-grid"><div><p class="lead">${R(e.intro)}</p><div class="action-row">${O(K.admission, "Info penerimaan", "button gold")}${O(K.physics, "Website prodi", "button outline")}${O(K.faq, "Tanya admisi", "button outline")}</div><p class="micro">Informasi jalur, biaya, dan jadwal mengikuti kanal resmi.</p></div><a class="qr-card" href="${K.admission}" target="_blank" rel="noopener noreferrer"><img id="qr" alt="QR menuju situs resmi admisi UIN Sunan Kalijaga" width="220" height="220"><strong>Pindai. Jelajahi. Mulai.</strong><small>admisi.uin-suka.ac.id</small></a></div>`;
     default:
@@ -75,7 +82,7 @@ function en() {
     (document.title = `${n + 1}. ${r.title} — SUKA Presentasi`),
     (se.innerHTML =
       yt(!0) +
-      `<main id="main" class="slide slide-${r.layout}" tabindex="-1"><div class="slide-heading"><div class="eyebrow"><span>${String(n + 1).padStart(2, "0")} / ${e.slides.length}</span> ${R(r.eyebrow)}</div><h1>${R(r.title)}</h1>${r.layout !== "hero" && r.layout !== "closing" ? `<p class="intro">${R(r.intro)}</p>` : ""}</div>${Zt(r)}<div class="source-row">${r.source ? O(K[r.source], "Sumber resmi") : `<span>Contoh edukatif • ${R(e.label || e.title)}</span>`}</div></main><footer class="controls"><button data-action="overview" title="Daftar slide (G)">▦ <span>Daftar slide</span></button><div class="progress" role="progressbar" aria-label="Kemajuan presentasi" aria-valuenow="${n + 1}" aria-valuemin="1" aria-valuemax="${e.slides.length}"><span style="width:${((n + 1) / e.slides.length) * 100}%"></span></div><span class="counter">${String(n + 1).padStart(2, "0")} / ${e.slides.length}</span><button data-action="notes" title="Catatan pembicara (N)" aria-label="Catatan pembicara">☷</button><button data-action="prev" aria-label="Slide sebelumnya" ${n === 0 ? "disabled" : ""}>←</button><button data-action="next" aria-label="Slide berikutnya" ${n === e.slides.length - 1 ? "disabled" : ""}>→</button></footer><dialog id="dialog" aria-labelledby="dialog-title"></dialog>`),
+      `<main id="main" class="slide slide-${r.layout} deck-${R(e.id)}" tabindex="-1"><div class="slide-heading"><div class="eyebrow"><span>${String(n + 1).padStart(2, "0")} / ${e.slides.length}</span> ${R(r.eyebrow)}</div><h1>${R(r.title)}</h1>${r.layout !== "hero" && r.layout !== "closing" ? `<p class="intro">${R(r.intro)}</p>` : ""}</div>${Zt(r)}<div class="source-row">${r.source ? O(K[r.source], "Sumber resmi") : `<span>Materi narasumber • ${R(e.label || e.title)}</span>`}</div></main><footer class="controls"><button data-action="overview" title="Daftar slide (G)">▦ <span>Daftar slide</span></button><div class="progress" role="progressbar" aria-label="Kemajuan presentasi" aria-valuenow="${n + 1}" aria-valuemin="1" aria-valuemax="${e.slides.length}"><span style="width:${((n + 1) / e.slides.length) * 100}%"></span></div><span class="counter">${String(n + 1).padStart(2, "0")} / ${e.slides.length}</span><button data-action="notes" title="Catatan pembicara (N)" aria-label="Catatan pembicara">☷</button><button data-action="prev" aria-label="Slide sebelumnya" ${n === 0 ? "disabled" : ""}>←</button><button data-action="next" aria-label="Slide berikutnya" ${n === e.slides.length - 1 ? "disabled" : ""}>→</button></footer><dialog id="dialog" aria-labelledby="dialog-title"></dialog>`),
     j == null || j.setMode(r.shape || 0),
     (Wt.textContent = `Slide ${n + 1} dari ${e.slides.length}. ${r.title}`),
     r.layout === "closing" &&
@@ -99,7 +106,14 @@ function $e() {
   ((B = zt(location.hash)),
     B ? en() : ((document.title = "SUKA Presentasi — Ruang inspirasi"), Xt()),
     wt(),
-    e && B && document.querySelector("#main").focus({ preventScroll: !0 }));
+    e && B && document.querySelector("#main").focus({ preventScroll: !0 }),
+    e && B && e.deck.id === B.deck.id && e.index !== B.index
+      ? gsap.fromTo(
+          "#main",
+          { y: 72, opacity: 0.15 },
+          { y: 0, opacity: 1, duration: 0.82, ease: "power3.out", clearProps: "transform,opacity" },
+        )
+      : void 0);
 }
 function ie(e) {
   B &&

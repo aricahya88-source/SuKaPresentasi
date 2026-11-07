@@ -1,6 +1,6 @@
 {
   "name": "suka-presentasi",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,8 +10,9 @@
     "test": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
-    "three": "0.180.0",
-    "qrcode": "1.5.4"
+    "gsap": "^3.13.0",
+    "qrcode": "1.5.4",
+    "three": "0.180.0"
   },
   "devDependencies": {
     "vite": "6.4.5"

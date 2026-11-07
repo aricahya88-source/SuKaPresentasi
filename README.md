@@ -1,4 +1,4 @@
-# SUKA Presentasi — Pendidikan Fisika (v2.1)
+# SUKA Presentasi — Pendidikan Fisika & SMA Syubbanul Wathon (v3.0)
 
 Website presentasi statis Pendidikan Fisika, Fakultas Ilmu Tarbiyah dan Keguruan, UIN Sunan Kalijaga Yogyakarta. Paket lengkap untuk GitHub dan Vercel. Tidak memerlukan database, akun, API key, atau backend.
 
@@ -49,6 +49,10 @@ npm run preview
 | 10 | Ajakan bergabung dan admisi | Nebula bintang |
 
 Bentuk adalah ilustrasi artistik, bukan simulasi astronomi/fisika berskala. Setiap perpindahan slide memakai morph posisi partikel selama sekitar 2,2 detik disertai sebaran singkat. Pergantian cepat tetap berawal dari posisi terakhir. Animasi terus berputar perlahan dan merespons mouse. Tidak ada mode autoplay slide.
+
+## Deck tambahan — SMA Syubbanul Wathon
+
+Deck kedua tersedia pada rute `#/presentasi/syubbanul-wathon/1`. Deck Pendidikan Fisika tetap tersedia pada rute `#/presentasi/pendidikan-fisika/1`. Materi SMA Syubbanul Wathon berisi pengalaman pengabdian 2013–2019, Good Character sebagai pondasi, pekerjaan masa depan Generasi Z, serta transformasi bangunan menjadi benih untuk Indonesia. Perpindahan slide deck ini memakai arah vertikal dari bawah dengan GSAP, sementara latar dan bentuk 3D tetap dirender oleh Three.js.
 
 Three.js memakai WebGL pada perangkat yang mendukung. Jika WebGL tidak tersedia, Canvas 2D memproyeksikan koordinat tiga dimensi yang sama, termasuk bentuk dan morph yang sama. Jadi semua sepuluh bentuk tetap tersedia pada mode cadangan. Jumlah partikel lebih sedikit di HP; loop berhenti saat tab tersembunyi. Tombol Animasi dan preferensi reduced motion menghentikan gerakan, tetapi bentuk statis tetap terlihat.
 
