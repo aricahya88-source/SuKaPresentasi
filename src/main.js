@@ -10,6 +10,7 @@ import {
 import { createParticles as xt } from "./particles.js";
 import { createNexoraPresenter } from './nexora/presenter.js';
 import { createAIMorphParticles } from './ai-morph-particles.js';
+import { experiencePhotos } from './syubbanul-gallery.js';
 const se = document.querySelector("#app"),
   Wt = document.querySelector("#status"),
   R = (e) =>
@@ -37,6 +38,7 @@ try {
   if (savedTheme === 'light' || savedTheme === 'dark') theme = savedTheme;
 } catch {}
 let ne = null;
+let experiencePhotoIndex = 0;
 const O = (e, n, r = "text-link") =>
     `<a class="${r}" href="${R(e)}" target="_blank" rel="noopener noreferrer">${R(n)} <span aria-hidden="true">↗</span></a>`,
   Qt = '<span class="brand-mark" aria-hidden="true">✳</span>';
@@ -60,7 +62,7 @@ function Zt(e) {
     case 'cv':
       return `<div class="cv-embed"><iframe src="/cv/index.html?theme=${theme}" title="Curriculum Vitae interaktif Ari Cahya Mawardi" loading="eager" allow="fullscreen"></iframe><div class="cv-print"><h2>Ari Cahya Mawardi</h2><p>Dosen Media Pembelajaran • UIN Sunan Kalijaga Yogyakarta</p><p>Profil • Pengalaman • Pengajaran • Penelitian dan publikasi</p></div></div>`;
     case 'timeline':
-      return `<div class="sy-timeline">${e.timeline.map((t, i) => `<article class="sy-time-step" style="--order:${i}"><span class="sy-year">${R(t.year)}</span><div class="sy-time-line"><span></span></div><div class="sy-time-body"><h2>${R(t.title)}</h2><p>${R(t.detail)}</p>${i === 2 ? '<small>UIN Sunan Kalijaga • Posisi kedua nasional menurut rilis kampus untuk THE WUR 2027</small>' : ''}</div></article>`).join('')}</div>`;
+      return `<div class="sy-timeline">${e.timeline.map((t, i) => `<article class="sy-time-step" style="--order:${i}"><span class="sy-year">${R(t.year)}</span><div class="sy-time-line"><span></span></div><div class="sy-time-body"><h2>${R(t.title)}</h2><p>${R(t.detail)}</p>${i === 2 ? '<small>UIN Sunan Kalijaga • Posisi kedua nasional menurut rilis kampus untuk THE WUR 2027</small>' : ''}</div></article>`).join('')}</div><div class="sy-photo-invitation"><span class="sy-photo-invitation-copy"><span aria-hidden="true">✦</span> Jejak perjalanan dalam bingkai dokumentasi</span><button type="button" class="sy-photo-launch" data-action="gallery" aria-haspopup="dialog"><span aria-hidden="true">▧</span> Lihat Dokumentasi <strong>${experiencePhotos.length} Foto</strong> <span aria-hidden="true">↗</span></button></div>`;
     case 'nexora':
       return `<div class="nexora-stage-copy"><div class="nexora-stage-meta"><span class="live-marker"></span>${R(e.legacy || (e.scene === 'opening' ? 'THE JOURNEY BEGINS' : 'NEXORA • ARCHITECTURAL METAPHOR'))}</div><div class="nexora-value-list">${(e.items || []).map((item, i) => `<article class="nexora-value" style="--order:${i}"><span>${String(i + 1).padStart(2, '0')}</span><div><strong>${R(item[0])}</strong><p>${R(item[1])}</p></div></article>`).join('')}</div><div class="nexora-hint">↻ Seret model untuk memutar • Gulir untuk memperbesar</div></div>`;
     case 'insights':
@@ -176,6 +178,26 @@ function re(e, n) {
       { once: !0 },
     ));
 }
+function renderExperiencePhoto() {
+  const gallery = document.querySelector('#sy-photo-gallery');
+  if (!gallery) return;
+  const photo = experiencePhotos[experiencePhotoIndex];
+  gallery.innerHTML = `<figure class="sy-photo-feature" style="--photo-index:${experiencePhotoIndex}"><div class="sy-photo-photoarea"><img src="${R(photo.src)}" alt="Dokumentasi pengalaman hidup dan mengabdi, foto ${photo.number} dari ${experiencePhotos.length}" decoding="async"><button type="button" class="sy-photo-arrow sy-photo-prev" data-action="gallery-prev" aria-label="Foto sebelumnya">‹</button><button type="button" class="sy-photo-arrow sy-photo-next" data-action="gallery-next" aria-label="Foto berikutnya">›</button></div><figcaption><span>JEJAK PENGABDIAN <b aria-live="polite">${String(photo.number).padStart(2, '0')} / ${String(experiencePhotos.length).padStart(2, '0')}</b></span><strong>${R(photo.name)}</strong></figcaption></figure><nav class="sy-photo-thumbs" aria-label="Pilih foto dokumentasi">${experiencePhotos.map((item, index) => `<button type="button" data-photo-index="${index}" ${index === experiencePhotoIndex ? 'aria-current="true"' : ''} aria-label="Tampilkan foto ${index + 1}: ${R(item.name)}"><img src="${R(item.src)}" alt="" loading="lazy" decoding="async"><span>${String(index + 1).padStart(2, '0')}</span></button>`).join('')}</nav><p class="sy-photo-help">Gunakan tombol ← → atau geser foto untuk berpindah · Esc untuk menutup</p>`;
+  gallery.querySelector('[aria-current="true"]')?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+}
+function changeExperiencePhoto(next) {
+  experiencePhotoIndex = (next + experiencePhotos.length) % experiencePhotos.length;
+  renderExperiencePhoto();
+}
+function openExperiencePhotos() {
+  if (B?.deck.id !== 'syubbanul-wathon' || B?.deck.slides[B.index]?.layout !== 'timeline') return;
+  experiencePhotoIndex = 0;
+  re('Dokumentasi perjalanan pengabdian', '<div id="sy-photo-gallery" class="sy-photo-gallery"></div>');
+  const dialog = document.querySelector('#dialog');
+  dialog.classList.add('sy-photo-dialog');
+  dialog.addEventListener('close', () => dialog.classList.remove('sy-photo-dialog'), { once: true });
+  renderExperiencePhoto();
+}
 async function tn() {
   try {
     document.fullscreenElement
@@ -206,6 +228,15 @@ function wt() {
 }
 function W(e) {
   switch (e) {
+    case 'gallery':
+      openExperiencePhotos();
+      break;
+    case 'gallery-next':
+      changeExperiencePhoto(experiencePhotoIndex + 1);
+      break;
+    case 'gallery-prev':
+      changeExperiencePhoto(experiencePhotoIndex - 1);
+      break;
     case "print":
       printDeck();
       break;
@@ -255,6 +286,11 @@ se.addEventListener("click", (e) => {
     W(n.dataset.action);
     return;
   }
+  const photoChoice = e.target.closest('[data-photo-index]');
+  if (photoChoice) {
+    changeExperiencePhoto(Number(photoChoice.dataset.photoIndex));
+    return;
+  }
   const r = e.target.closest("[data-field]");
   if (r) {
     const t = kt[Number(r.dataset.field)];
@@ -269,6 +305,16 @@ se.addEventListener("click", (e) => {
 });
 addEventListener("keydown", (e) => {
   var r;
+  const openDialog = document.querySelector('#dialog');
+  if (openDialog?.open) {
+    if (openDialog.classList.contains('sy-photo-dialog') && !e.altKey && !e.ctrlKey && !e.metaKey) {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        W(e.key === 'ArrowRight' ? 'gallery-next' : 'gallery-prev');
+      }
+    }
+    return;
+  }
   if (
     e.ctrlKey ||
     e.altKey ||
@@ -299,6 +345,22 @@ addEventListener("keydown", (e) => {
             : n === "t" && W("theme");
 });
 let ae = null;
+let experiencePhotoTouch = null;
+se.addEventListener('touchstart', e => {
+  if (!e.target.closest('.sy-photo-photoarea')) return;
+  const touch = e.changedTouches[0];
+  experiencePhotoTouch = { x: touch.clientX, y: touch.clientY };
+}, { passive: true });
+se.addEventListener('touchend', e => {
+  if (!experiencePhotoTouch) return;
+  const touch = e.changedTouches[0];
+  const dx = touch.clientX - experiencePhotoTouch.x;
+  const dy = touch.clientY - experiencePhotoTouch.y;
+  experiencePhotoTouch = null;
+  if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+    W(dx < 0 ? 'gallery-next' : 'gallery-prev');
+  }
+}, { passive: true });
 se.addEventListener(
   "touchstart",
   (e) => {
