@@ -11,6 +11,7 @@ import { createParticles as xt } from "./particles.js";
 import { createNexoraPresenter } from './nexora/presenter.js';
 import { createAIMorphParticles } from './ai-morph-particles.js';
 import { experiencePhotos } from './syubbanul-gallery.js';
+import { marsTitle, marsVerses } from './mars-lyrics.js';
 const se = document.querySelector("#app"),
   Wt = document.querySelector("#status"),
   R = (e) =>
@@ -64,7 +65,7 @@ function Zt(e) {
     case 'timeline':
       return `<div class="sy-timeline">${e.timeline.map((t, i) => `<article class="sy-time-step" style="--order:${i}"><span class="sy-year">${R(t.year)}</span><div class="sy-time-line"><span></span></div><div class="sy-time-body"><h2>${R(t.title)}</h2><p>${R(t.detail)}</p>${i === 2 ? '<small>UIN Sunan Kalijaga • Posisi kedua nasional menurut rilis kampus untuk THE WUR 2027</small>' : ''}</div></article>`).join('')}</div><div class="sy-photo-invitation"><span class="sy-photo-invitation-copy"><span aria-hidden="true">✦</span> Jejak perjalanan dalam bingkai dokumentasi</span><button type="button" class="sy-photo-launch" data-action="gallery" aria-haspopup="dialog"><span aria-hidden="true">▧</span> Lihat Dokumentasi <strong>${experiencePhotos.length} Foto</strong> <span aria-hidden="true">↗</span></button></div>`;
     case 'nexora':
-      return `<div class="nexora-stage-copy"><div class="nexora-stage-meta"><span class="live-marker"></span>${R(e.legacy || (e.scene === 'opening' ? 'THE JOURNEY BEGINS' : 'NEXORA • ARCHITECTURAL METAPHOR'))}</div><div class="nexora-value-list">${(e.items || []).map((item, i) => `<article class="nexora-value" style="--order:${i}"><span>${String(i + 1).padStart(2, '0')}</span><div><strong>${R(item[0])}</strong><p>${R(item[1])}</p></div></article>`).join('')}</div><div class="nexora-hint">↻ Seret model untuk memutar • Gulir untuk memperbesar</div></div>`;
+      return `<div class="nexora-stage-copy"><div class="nexora-stage-meta"><span class="live-marker"></span>${R(e.legacy || (e.scene === 'opening' ? 'THE JOURNEY BEGINS' : 'NEXORA • ARCHITECTURAL METAPHOR'))}</div><div class="nexora-value-list">${(e.items || []).map((item, i) => `<article class="nexora-value" style="--order:${i}"><span>${String(i + 1).padStart(2, '0')}</span><div><strong>${R(item[0])}</strong><p>${R(item[1])}</p></div></article>`).join('')}</div>${e.scene === 'complete' ? `<div class="mars-preview"><span class="mars-preview-kicker">${R(marsTitle)}</span><p>“Jaya jaya SMA Syubbanul Wathon”</p><button type="button" data-action="mars-lyrics" aria-haspopup="dialog">♫ &nbsp;Baca Lirik Lengkap <span aria-hidden="true">↗</span></button></div><section class="mars-print-lyrics" aria-label="Teks lengkap Mars SMA Syubbanul Wathon"><h2>${R(marsTitle)}</h2>${marsVerses.map(lines => `<p>${lines.map(R).join('<br>')}</p>`).join('')}</section>` : ''}<div class="nexora-hint">↻ Seret model untuk memutar • Gulir untuk memperbesar</div></div>`;
     case 'insights':
       return `<div class="sy-orbit" aria-hidden="true"><div class="sy-orbit-ring ring-a"></div><div class="sy-orbit-ring ring-b"></div><div class="sy-orbit-core">AI</div></div><div class="sy-insight-grid">${e.items.map((item, i) => `<article class="sy-insight" style="--order:${i}"><div class="sy-insight-symbol">${R(item[0])}</div><h2>${R(item[1])}</h2><p>${R(item[2])}</p></article>`).join('')}</div>`;
     case 'manifesto':
@@ -216,6 +217,14 @@ function openExperiencePhotos() {
   dialog.addEventListener('close', () => dialog.classList.remove('sy-photo-dialog'), { once: true });
   renderExperiencePhoto();
 }
+function openMarsLyrics() {
+  if (B?.deck.id !== 'syubbanul-wathon' || B?.deck.slides[B.index]?.scene !== 'complete') return;
+  const verses = marsVerses.map((lines, index) => `<section class="mars-verse${index === 2 ? ' mars-verse-refrain' : ''}" aria-label="Bait ${index + 1}"><span class="mars-verse-label">${index === 2 ? 'REFF' : `BAIT ${String(index + 1).padStart(2, '0')}`}</span>${lines.map(line => `<p>${R(line)}</p>`).join('')}</section>`).join('');
+  re(marsTitle, `<div class="mars-lyrics-content"><p class="mars-lyrics-origin">Karya siswa angkatan kedua SMA Syubbanul Wathon · Didampingi dalam proses pembimbingan pada masa kesiswaan.</p><div class="mars-lyrics-verses">${verses}</div></div>`);
+  const dialog = document.querySelector('#dialog');
+  dialog.classList.add('mars-dialog');
+  dialog.addEventListener('close', () => dialog.classList.remove('mars-dialog'), { once: true });
+}
 async function tn() {
   try {
     document.fullscreenElement
@@ -246,6 +255,9 @@ function wt() {
 }
 function W(e) {
   switch (e) {
+    case 'mars-lyrics':
+      openMarsLyrics();
+      break;
     case 'gallery':
       openExperiencePhotos();
       break;

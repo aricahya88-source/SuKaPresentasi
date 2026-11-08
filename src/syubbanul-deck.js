@@ -75,7 +75,7 @@ export const syubbanulDeck = {
       intro: 'Mars SMA Syubbanul Wathon diciptakan oleh siswa angkatan kedua. Saya mendampingi prosesnya sebagai pembimbing ketika bertugas di bidang kesiswaan.',
       layout: 'nexora', dark: true, scene: 'complete', legacy: 'LEGACY II', progress: 1, camera: 'green',
       items: [['Karya para siswa', 'Lahir dari kreativitas angkatan kedua'], ['Peran pembimbing', 'Menumbuhkan ruang berkarya bersama'], ['Identitas sekolah', 'Nilai yang terus mengiringi perjalanan']],
-      notes: 'Bangunan NEXORA selesai dan taman tumbuh. Jangan mengatribusikan penciptaan Mars kepada narasumber; penciptanya siswa angkatan kedua. Audio dan lirik resmi hanya boleh ditambahkan bila disediakan dan diizinkan.',
+      notes: 'Bangunan NEXORA selesai dan taman tumbuh. Klik Baca Lirik Lengkap untuk menampilkan empat bait Mars yang diberikan narasumber. Jangan mengatribusikan penciptaan Mars kepada narasumber; penciptanya siswa angkatan kedua, sedangkan narasumber merupakan pembimbing ketika bertugas di bidang kesiswaan. Tidak ada audio Mars yang ditambahkan.',
     },
     {
       title: 'Generasi Z di tengah revolusi AI.',

@@ -2569,3 +2569,80 @@ body.home.theme-dark .home-footer {border-color:#36566d;}
   body.deck-syubbanul-wathon .header nav {gap:8px;}
 }
 @media print {#ai-particles {display:none!important;}}
+
+/* Legacy II — Mars angkatan kedua: lirik lengkap tampil lewat dialog,
+   sementara model NEXORA tetap utuh di belakang slide. */
+.mars-preview {
+  pointer-events:auto;position:relative;z-index:8;margin-top:17px;
+  padding:14px 16px;border-radius:15px;
+  border:1px solid rgba(233,190,117,.42);
+  background:linear-gradient(110deg,rgba(35,63,83,.92),rgba(13,43,70,.82));
+  box-shadow:0 14px 38px #030d1a3c;
+}
+.mars-preview-kicker {display:block;font-size:9px;letter-spacing:.18em;font-weight:800;color:#eec98d;}
+.mars-preview p {margin:8px 0 11px;font-size:clamp(15px,1.55vw,20px);line-height:1.35;font-weight:700;color:#f4f9ff;}
+.mars-preview button {
+  pointer-events:auto;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  cursor:pointer;border:1px solid #f5d49c;border-radius:10px;
+  background:linear-gradient(120deg,#f1ce97,#d9a95c);color:#19354e;
+  padding:11px 15px;font-size:12px;font-weight:800;line-height:1.2;font-family:inherit;
+  box-shadow:0 5px 21px #050f1b53;transition:transform .2s ease,box-shadow .2s ease;
+}
+.mars-preview button:hover {transform:translateY(-2px);box-shadow:0 8px 28px #040f1c87;}
+.mars-preview button:focus-visible {outline:3px solid #69caff;outline-offset:3px;}
+.mars-print-lyrics {display:none;}
+
+body.deck-syubbanul-wathon dialog.mars-dialog {
+  width:min(860px,calc(100vw - 28px));max-width:none;
+  max-height:92dvh;padding:clamp(18px,2.7vw,34px);
+  border:1px solid #58758a;border-radius:22px;
+  background:#0e2034;color:#e9f5ff;
+  box-shadow:0 40px 110px #010914c7;
+  overflow-y:auto;overscroll-behavior:contain;
+}
+body.deck-syubbanul-wathon dialog.mars-dialog::backdrop {background:#03111adf;backdrop-filter:blur(11px);}
+.mars-dialog .dialog-top {align-items:center;border-bottom:1px solid #365773;padding-bottom:17px;margin-bottom:17px;}
+.mars-dialog .dialog-top h2 {font-size:clamp(19px,2.7vw,30px);letter-spacing:.025em;line-height:1.2;color:inherit;}
+.mars-dialog .dialog-top button {width:39px;height:39px;border-color:#547894;background:#21445f;color:#fff;cursor:pointer;}
+.mars-lyrics-content {margin:0 auto;max-width:750px;}
+.mars-lyrics-origin {font-size:12px;color:#a8c5da;line-height:1.6;margin:0 0 17px;}
+.mars-lyrics-verses {display:grid;gap:14px;}
+.mars-verse {
+  position:relative;padding:14px 19px 16px 24px;
+  border-radius:13px;border:1px solid #3c6078;border-left:3px solid #68b9e7;
+  background:linear-gradient(120deg,rgba(39,76,106,.66),rgba(13,42,64,.63));
+}
+.mars-verse-label {display:block;margin-bottom:9px;color:#89cbec;font-size:10px;letter-spacing:.17em;font-weight:800;}
+.mars-verse p {font-size:clamp(16px,1.7vw,21px);line-height:1.43;margin:0;color:#f2f8ff;}
+.mars-verse-refrain {border-color:#826c4c;border-left-color:#e8c37c;background:linear-gradient(120deg,#67513957,#463c346b);}
+.mars-verse-refrain .mars-verse-label {color:#f2d49f;}
+body.theme-light.deck-syubbanul-wathon .mars-preview {background:linear-gradient(120deg,#fff,#e9f4fa);border-color:#d7b781;box-shadow:0 10px 30px #b0c5d443;}
+body.theme-light.deck-syubbanul-wathon .mars-preview-kicker {color:#9b733c;}
+body.theme-light.deck-syubbanul-wathon .mars-preview p {color:#234d6b;}
+body.theme-light.deck-syubbanul-wathon .mars-preview button {background:linear-gradient(130deg,#287db0,#185a84);border-color:#357eaa;color:#fff;}
+body.theme-light.deck-syubbanul-wathon dialog.mars-dialog {background:#f8fcff;color:#1f4460;border-color:#a9ccdf;}
+body.theme-light.deck-syubbanul-wathon .mars-dialog .dialog-top {border-color:#c3d9e6;}
+body.theme-light.deck-syubbanul-wathon .mars-dialog .dialog-top button {background:#e0f0f9;color:#235372;border-color:#adcedf;}
+body.theme-light.deck-syubbanul-wathon .mars-lyrics-origin {color:#618197;}
+body.theme-light.deck-syubbanul-wathon .mars-verse {background:linear-gradient(130deg,#fff,#eaf5fc);border-color:#bad8e7;border-left-color:#398ebb;}
+body.theme-light.deck-syubbanul-wathon .mars-verse-label {color:#327ea6;}
+body.theme-light.deck-syubbanul-wathon .mars-verse p {color:#284e6a;}
+body.theme-light.deck-syubbanul-wathon .mars-verse-refrain {background:linear-gradient(135deg,#fff9eb,#f3e7cd);border-color:#dec39b;border-left-color:#b48a4c;}
+body.theme-light.deck-syubbanul-wathon .mars-verse-refrain .mars-verse-label {color:#9d753b;}
+@media(max-width:760px) {
+  .mars-preview {padding:10px 12px;margin-top:9px;}
+  .mars-preview-kicker {font-size:8px;}
+  .mars-preview p {font-size:13px;margin:5px 0 8px;}
+  .mars-preview button {padding:9px 12px;font-size:11px;}
+  body.deck-syubbanul-wathon dialog.mars-dialog {width:calc(100vw - 14px);max-height:96dvh;border-radius:15px;padding:15px;}
+  .mars-lyrics-origin {font-size:10px;}
+  .mars-verse {padding:12px 12px 13px 15px;}
+  .mars-verse p {font-size:clamp(14px,3.9vw,19px);}
+}
+@media print {
+  .print-slide .mars-preview {display:none!important;}
+  .print-slide .nexora-stage-copy:has(.mars-print-lyrics) .nexora-value-list {display:none!important;}
+  .print-slide .mars-print-lyrics {display:block!important;max-width:750px;margin:12px 0 0;color:#183d5d;}
+  .print-slide .mars-print-lyrics h2 {font-size:19px;margin:0 0 9px;color:#183d5d;}
+  .print-slide .mars-print-lyrics p {font-size:11.5px!important;line-height:1.32!important;margin:0 0 9px!important;color:#234665!important;}
+}
